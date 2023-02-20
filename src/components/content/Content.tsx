@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from "../header/Header";
+import classes from "./Content.module.css";
 
 const Content = () => {
-    return <div>
+    return <div className={classes.main}>
         Content
     </div>
 }
