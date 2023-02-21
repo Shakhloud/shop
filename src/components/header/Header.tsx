@@ -4,6 +4,7 @@ import Top from './top_of_header/Top';
 import Navbar from './navigation/Navbar';
 
 
+
 const Header = (props:any) => {
     return <div className={classes.header}>
         <div className={classes.container} >
@@ -12,5 +13,4 @@ const Header = (props:any) => {
         </div>
     </div>
 }
-
 export default Header;
