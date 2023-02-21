@@ -1,0 +1,53 @@
+.top {
+    margin-top: 20px;
+    display: grid;
+    grid-template-areas: 'search logo languages icons';
+    grid-template-columns: 5fr 5fr 1fr auto;
+    align-items: center;
+    justify-content: end;
+}
+.search {
+    grid-area: search;
+    display: inline-flex;
+    border: 1px solid white;
+    padding: 8px 13px;
+    border-radius: 15px;
+    background-color: black;
+}
+.logo {
+    grid-area: logo;
+}
+.search__icon {
+    margin-right: 4px;
+}
+.search__form {
+    background-color: black;
+    border: none;
+    color: white;
+}
+/*Изменение цвета placeholder*/
+.search__form::placeholder {
+    color: white;
+    opacity: 1;
+}
+
+.search__form:focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.languages {
+    grid-area: languages;
+    color: #868686;
+}
+
+.languages span {
+    color: white;
+}
+
+.icons {
+    grid-area: icons;
+}
+.icons img:not(:last-child) {
+    margin-right: 30px;
+}
