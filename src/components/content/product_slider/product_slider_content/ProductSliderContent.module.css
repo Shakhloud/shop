@@ -1,0 +1,29 @@
+.image {
+    margin: 0 auto;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.image img {
+    max-width: 100%;
+}
+
+.title {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+}
+.desc {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 500px;
+    color: white;
+}
+.cost {
+    font-size: 24px;
+    text-align: center;
+    color: white;
+}

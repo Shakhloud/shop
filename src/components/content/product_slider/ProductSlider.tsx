@@ -3,7 +3,6 @@ import classes from "./ProductSlider.module.css";
 import arrowRight from "./../../../img/content/product_slider/arrow-right.svg";
 import arrowLeft from "./../../../img/content/product_slider/arrow-left.svg";
 import ProductSliderContent from "./product_slider_content/ProductSliderContent";
-import {ServerData} from "./../../../store/ServerData";
 
 const ProductSlider = (props: any) => {
     const [currentIndex, setIndex] = useState(0);
@@ -30,7 +29,7 @@ const ProductSlider = (props: any) => {
                 <img src={arrowLeft} alt="Стрелка влево"/>
             </button>
             <ProductSliderContent image={products[currentIndex].image} title={products[currentIndex].title}
-                                  cost={products[currentIndex].cost}/>
+                                  desc={products[currentIndex].desc} cost={products[currentIndex].cost}/>
             <button onClick={nextItem} className={classes.btn}>
                 <img src={arrowRight} alt="Стрелка вправо"/>
             </button>

@@ -1,4 +1,6 @@
 .main {
+    padding-top: 30px;
+    background-color: black;
     flex: 1 1 auto;
 }
 .container {

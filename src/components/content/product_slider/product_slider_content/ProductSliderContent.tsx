@@ -3,12 +3,15 @@ import classes from "./ProductSliderContent.module.css";
 
 const ProductSliderContent = (props: any) => {
     return <div>
-        <div><img src={props.image} alt="Фотография товара"/></div>
-        <div>
+        <div className={classes.image}><img src={props.image} alt="Фотография товара"/></div>
+        <div className={classes.title}>
             {props.title}
         </div>
-        <div>
-            {props.cost}$
+        <div className={classes.desc}>
+            {props.desc}
+        </div>
+        <div className={classes.cost}>
+           Cost: {props.cost}$
         </div>
     </div>
 }
