@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from "./ProductSliderContent.module.css";
+import classes from "./ProductItemContent.module.css";
 
-const ProductSliderContent = (props: any) => {
+const ProductItemContent = (props: any) => {
     return <div>
         <div className={classes.image}><img src={props.image} alt="Фотография товара"/></div>
         <div className={classes.title}>
@@ -16,4 +16,4 @@ const ProductSliderContent = (props: any) => {
     </div>
 }
 
-export default ProductSliderContent;
+export default ProductItemContent;

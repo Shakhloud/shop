@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import classes from "./ProductSlider.module.css";
 import arrowRight from "./../../../img/content/product_slider/arrow-right.svg";
 import arrowLeft from "./../../../img/content/product_slider/arrow-left.svg";
-import ProductSliderContent from "./product_slider_content/ProductSliderContent";
+import ProductItemContent from "../product_item_content/ProductItemContent";
 
 const ProductSlider = (props: any) => {
     const [currentIndex, setIndex] = useState(0);
@@ -28,8 +28,8 @@ const ProductSlider = (props: any) => {
             <button onClick={prevItem} className={classes.btn}>
                 <img src={arrowLeft} alt="Стрелка влево"/>
             </button>
-            <ProductSliderContent image={products[currentIndex].image} title={products[currentIndex].title}
-                                  desc={products[currentIndex].desc} cost={products[currentIndex].cost}/>
+            <ProductItemContent image={products[currentIndex].image} title={products[currentIndex].title}
+                                desc={products[currentIndex].desc} cost={products[currentIndex].cost}/>
             <button onClick={nextItem} className={classes.btn}>
                 <img src={arrowRight} alt="Стрелка вправо"/>
             </button>

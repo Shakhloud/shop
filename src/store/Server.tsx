@@ -1,6 +1,6 @@
 import promo1 from "./../img/content/promo_slider/promo1.png";
 
-type Product = {
+export type Product = {
     id: number,
     image: string,
     title: string,
@@ -19,8 +19,29 @@ class Server {
     constructor() {
         this.store = createStore();
     }
+
     public getStore(): Store {
         return this.store;
+    }
+
+    public getPageData = (pageNum: number, countOnOnePage: number): Array<Product> => {
+        const countOfAllProducts = this.store.paginationProducts.length;
+        const startIndex = (pageNum - 1) * countOnOnePage;
+        const resultProductOnPage: Array<Product> = [];
+        if (startIndex < countOfAllProducts) {
+            if ((countOfAllProducts - startIndex) > countOnOnePage) {
+                for (let i = 0; i < (countOnOnePage); i++) {
+                    resultProductOnPage[i] = this.store.paginationProducts[startIndex + i];
+                }
+            } else {
+                for (let i = 0; i < (countOfAllProducts - startIndex); i++) {
+                    resultProductOnPage[i] = this.store.paginationProducts[startIndex + i];
+                }
+            }
+            return resultProductOnPage;
+        } else {
+            return resultProductOnPage;
+        }
     }
 }
 
@@ -348,3 +369,5 @@ const createStore: () => Store = () => {
     }
 }
 export const server = new Server();
+// @ts-ignore
+window.server = server;
