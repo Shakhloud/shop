@@ -8,6 +8,11 @@ export type Product = {
     cost: number,
 };
 
+type PageResponse = {
+    data: Array<Product>,
+    maxPage: number,
+}
+
 type Store = {
     sliderProducts: Array<Product>,
     paginationProducts: Array<Product>,
@@ -24,7 +29,7 @@ class Server {
         return this.store;
     }
 
-    public getPageData = (pageNum: number, countOnOnePage: number): Array<Product> => {
+    public getPageData = (pageNum: number, countOnOnePage: number): PageResponse => {
         const countOfAllProducts = this.store.paginationProducts.length;
         const startIndex = (pageNum - 1) * countOnOnePage;
         const resultProductOnPage: Array<Product> = [];
@@ -38,9 +43,15 @@ class Server {
                     resultProductOnPage[i] = this.store.paginationProducts[startIndex + i];
                 }
             }
-            return resultProductOnPage;
+            return {
+                data: resultProductOnPage,
+                maxPage: Math.ceil(countOfAllProducts/countOnOnePage),
+            };
         } else {
-            return resultProductOnPage;
+            return {
+                data: resultProductOnPage,
+                maxPage: Math.ceil(countOfAllProducts/countOnOnePage),
+            };
         }
     }
 }
