@@ -6,9 +6,11 @@
     cursor: pointer;
     transition: 0.5s;
 }
+
 .btn img {
     max-width: 30px;
 }
+
 .btn:active {
     background-color: #2a2a2a;
     transition: 0.5s;

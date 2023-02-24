@@ -1,3 +1,5 @@
+
+
 .navbar {
     margin: 25px 0 16px 0;
     display: flex;
@@ -7,10 +9,11 @@
     transition: 0.2s;
     color: white;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 16px;
 }
 .kategorie__link {
     text-decoration: none;
+
 }
 
 .kategorie:hover .kategorie__span {
