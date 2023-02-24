@@ -38,4 +38,5 @@
 }
 .active:hover {
     background: #FFC700;
+    cursor: default;
 }

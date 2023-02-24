@@ -23,7 +23,6 @@ const PageSlider = (props: any) => {
             props.setCurrentPage(props.currentPage + 1);
         }
     }
-    debugger
     const prevItemHandler = () => {
         if (props.currentPage === 1) {
             props.setCurrentPage(props.maxPage);

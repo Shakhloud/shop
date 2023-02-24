@@ -1,43 +1,44 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import classes from "./Navbar.module.css";
 
 const Havbar = (props:any) => {
     return <div className={classes.navbar}>
-        <a href="#" className={classes.kategorie__link}>
+        <NavLink to="/services" className={classes.kategorie__link}>
             <div className={classes.kategorie}>
                 <span className={classes.kategorie__span}>Наши услуги</span>
             </div>
-        </a>
-        <a href="#" className={classes.kategorie__link}>
+        </NavLink>
+        <NavLink to="/example_print" className={classes.kategorie__link}>
             <div className={classes.kategorie}>
                 <span className={classes.kategorie__span}>Пример печати</span>
             </div>
-        </a>
-        <a href="#" className={classes.kategorie__link}>
+        </NavLink>
+        <NavLink to="/promotion" className={classes.kategorie__link}>
             <div className={classes.kategorie}>
                 <span className={classes.kategorie__span}>Акции и предложения</span>
             </div>
-        </a>
-        <a href="#" className={classes.kategorie__link}>
+        </NavLink>
+        <NavLink to="/top_sell" className={classes.kategorie__link}>
             <div className={classes.kategorie}>
                 <span className={classes.kategorie__span}>Топ продаж</span>
             </div>
-        </a>
-        <a href="#" className={classes.kategorie__link}>
+        </NavLink>
+        <NavLink to="/catalog" className={classes.kategorie__link}>
             <div className={classes.kategorie}>
                 <span className={classes.kategorie__span}>Каталог</span>
             </div>
-        </a>
-        <a href="#" className={classes.kategorie__link}>
+        </NavLink>
+        <NavLink to="/reviews" className={classes.kategorie__link}>
             <div className={classes.kategorie}>
                 <span className={classes.kategorie__span}>Отзывы</span>
             </div>
-        </a>
-        <a href="#" className={classes.kategorie__link}>
+        </NavLink>
+        <NavLink to="/call_us" className={classes.kategorie__link}>
             <div className={classes.kategorie}>
                 <span className={classes.kategorie__span}>Свяжитесь с нами</span>
             </div>
-        </a>
+        </NavLink>
     </div>
 }
 
