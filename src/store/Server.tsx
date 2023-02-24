@@ -29,30 +29,27 @@ class Server {
         return this.store;
     }
 
-    public getPageData = (pageNum: number, countOnOnePage: number): PageResponse => {
-        const countOfAllProducts = this.store.paginationProducts.length;
+    public getPageData = (pageNum: number, countOnOnePage: number, filterItemName: string): PageResponse => {
+        const clearFilterItemName = filterItemName.trim().toLowerCase();
+        const filteredStorePaginationProducts = this.store.paginationProducts.filter(element => (clearFilterItemName === '') ? true : element.title.toLowerCase().includes(clearFilterItemName))
+        const countOfAllProducts = filteredStorePaginationProducts.length;
         const startIndex = (pageNum - 1) * countOnOnePage;
-        const resultProductOnPage: Array<Product> = [];
+        let resultProductOnPage: Array<Product> = [];
         if (startIndex < countOfAllProducts) {
             if ((countOfAllProducts - startIndex) > countOnOnePage) {
                 for (let i = 0; i < (countOnOnePage); i++) {
-                    resultProductOnPage[i] = this.store.paginationProducts[startIndex + i];
+                    resultProductOnPage[i] = filteredStorePaginationProducts[startIndex + i];
                 }
             } else {
                 for (let i = 0; i < (countOfAllProducts - startIndex); i++) {
-                    resultProductOnPage[i] = this.store.paginationProducts[startIndex + i];
+                    resultProductOnPage[i] = filteredStorePaginationProducts[startIndex + i];
                 }
             }
-            return {
-                data: resultProductOnPage,
-                maxPage: Math.ceil(countOfAllProducts/countOnOnePage),
-            };
-        } else {
-            return {
-                data: resultProductOnPage,
-                maxPage: Math.ceil(countOfAllProducts/countOnOnePage),
-            };
         }
+        return {
+            data: resultProductOnPage,
+            maxPage: Math.ceil(countOfAllProducts / countOnOnePage),
+        };
     }
 }
 
