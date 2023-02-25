@@ -5,12 +5,13 @@ import arrowLeft from "./../../../img/content/product_slider/arrow-left.svg";
 
 const PageSlider = (props: any) => {
     const activePage = props.currentPage;
-    let prevPage = activePage-1;
-    let nextPage = activePage+1;
+    let prevPage = activePage - 1;
+    let nextPage = activePage + 1;
     if (props.currentPage === 1) {
         prevPage = props.maxPage;
         nextPage = activePage + 1;
     }
+
     if (props.currentPage === props.maxPage) {
         prevPage = activePage - 1;
         nextPage = 1;
@@ -31,13 +32,21 @@ const PageSlider = (props: any) => {
         }
     }
 
-    return <div className={classes.container}>
-        <button onClick={prevItemHandler} className={classes.arrow}><img src={arrowLeft} alt="Стрелка влево"/></button>
-        <button onClick={prevItemHandler} className={classes.prev + ' ' + classes.btn}><span>{prevPage}</span></button>
+    debugger
+    return <div className={classes.container + ' ' + (props.maxPage === 0 ? classes.btn__hide : '')}>
+        <div className={props.maxPage === 1 ? classes.btn__hide : ''}>
+            <button onClick={prevItemHandler} className={classes.arrow}><img src={arrowLeft} alt="Стрелка влево"/>
+            </button>
+            <button onClick={prevItemHandler} className={classes.prev + ' ' + classes.btn}><span>{prevPage}</span>
+            </button>
+        </div>
         <button className={classes.active + ' ' + classes.btn}><span>{activePage}</span></button>
-        <button onClick={nextItemHandler} className={classes.next + ' ' + classes.btn}><span>{nextPage}</span></button>
-        <button onClick={nextItemHandler} className={classes.arrow}><img src={arrowRight} alt="Стрелка вправо"/>
-        </button>
+        <div className={props.maxPage === 1 ? classes.btn__hide : ''}>
+            <button onClick={nextItemHandler} className={classes.next + ' ' + classes.btn}><span>{nextPage}</span>
+            </button>
+            <button onClick={nextItemHandler} className={classes.arrow}><img src={arrowRight} alt="Стрелка вправо"/>
+            </button>
+        </div>
     </div>
 }
 

@@ -12,18 +12,21 @@ const ProductPagination = (props: any) => {
     const [itemsOnOnePage, setItemsOnOnePage] = useState(8);
     const [filterMode, setFilterMode] = useState(0);
     const [filterItemName, setFilterItemName] = useState('');
+    const [filterCurrentMaxValue, setFilterCurrentMaxValue] = useState(15000);
+    const [filterCurrentMinValue, setFilterCurrentMinValue] = useState(0);
 
     useEffect(() => {
-        const response = props.getPageData(currentPage, itemsOnOnePage, filterItemName);
+        const response = props.getPageData(currentPage, itemsOnOnePage, filterItemName, filterCurrentMinValue, filterCurrentMaxValue);
         setMaxPage(response.maxPage);
         setCurrentProducts(response.data);
-    }, [currentPage, itemsOnOnePage, filterItemName]);
+    }, [currentPage, itemsOnOnePage, filterItemName, filterCurrentMaxValue, filterCurrentMinValue]);
 
     const itemsOnOnePageHandler = (e: any) => {
+        setCurrentPage(1);
         setItemsOnOnePage(Number(e.value));
     };
 
-    const filterNumberHandler = (e: any) => {
+    const filterModeHandler = (e: any) => {
         setFilterMode(Number(e.value));
         if (e.value !== 1) {
             setFilterItemName('');
@@ -31,9 +34,17 @@ const ProductPagination = (props: any) => {
     };
 
     const filterInputHandler = (e: any) => {
+        setCurrentPage(1);
         setFilterItemName(e.target.value);
     };
 
+    const filterSliderHandler = (e: any) => {
+        setCurrentPage(1);
+        setFilterCurrentMaxValue(e[1]);
+        setFilterCurrentMinValue(e[0]);
+    };
+
+    debugger
     return <div>
         <div className={classes.header}>
             <div className={classes.title}><span>Дж</span>инсы <span className={classes.title__under}>Любые размеры и формы</span>
@@ -52,7 +63,7 @@ const ProductPagination = (props: any) => {
                 <Select
                     labelInValue
                     defaultValue={{value: '0', label: 'Выберите режим фильтра'}}
-                    onChange={filterNumberHandler}
+                    onChange={filterModeHandler}
                     options={[
                         {
                             value: '0',
@@ -76,9 +87,8 @@ const ProductPagination = (props: any) => {
                     min={0}
                     max={20000}
                     step={50}
-                    defaultValue={[0, 20000]}
-                    /*onChange={onChange}
-                    onAfterChange={onAfterChange}*/
+                    onChange={filterSliderHandler}
+                    value={[filterCurrentMinValue, filterCurrentMaxValue]}
                 /> : ''}
 
             </div>

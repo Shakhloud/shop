@@ -3,8 +3,9 @@
     max-width: 300px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
+
 .arrow {
     background-color: black;
     cursor: pointer;
@@ -14,6 +15,7 @@
 }
 
 .btn {
+
     border-radius: 15px;
     color: white;
     font-weight: 500;
@@ -24,6 +26,10 @@
     padding: 10px 20px;
     transition: 0.5s;
 }
+.btn:not(:last-child) {
+    margin-left: 5px;
+}
+
 .btn:hover {
     background: #363636;
     transition: 0.5s;
@@ -39,4 +45,7 @@
 .active:hover {
     background: #FFC700;
     cursor: default;
+}
+.btn__hide {
+    display: none;
 }

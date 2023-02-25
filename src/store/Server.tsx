@@ -29,9 +29,10 @@ class Server {
         return this.store;
     }
 
-    public getPageData = (pageNum: number, countOnOnePage: number, filterItemName: string): PageResponse => {
+    public getPageData = (pageNum: number, countOnOnePage: number, filterItemName: string, filterMinValue: number, filterMaxValue: number): PageResponse => {
         const clearFilterItemName = filterItemName.trim().toLowerCase();
-        const filteredStorePaginationProducts = this.store.paginationProducts.filter(element => (clearFilterItemName === '') ? true : element.title.toLowerCase().includes(clearFilterItemName))
+        const filteredStorePaginationProducts = this.store.paginationProducts.filter(element => (clearFilterItemName === '') ? true : element.title.toLowerCase().includes(clearFilterItemName)).filter(element => element.cost <= filterMaxValue && element.cost >= filterMinValue);
+        debugger
         const countOfAllProducts = filteredStorePaginationProducts.length;
         const startIndex = (pageNum - 1) * countOnOnePage;
         let resultProductOnPage: Array<Product> = [];
