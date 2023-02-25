@@ -49,16 +49,6 @@ const ProductPagination = (props: any) => {
         <div className={classes.header}>
             <div className={classes.title}><span>Дж</span>инсы <span className={classes.title__under}>Любые размеры и формы</span>
             </div>
-            {/*<div className={classes.sort}>Сортировка: <span><select name="sort">
-                <option value="sort_1">Сортировка №1</option>
-                <option value="sort_2">Сортировка №2</option>
-                <option value="sort_3"></option>
-            </select></span></div>*/}
-            {/*<div className={classes.page}>На странице: <span><select name="itemsPage">
-                <option value="five">4</option>
-                <option value="eight">8</option>
-                <option value="sixteen">16</option>
-            </select></span></div>*/}
             <div>
                 <Select
                     labelInValue

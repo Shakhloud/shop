@@ -1,22 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
 import './App.css';
 import Header from "./components/header/Header";
 import Content from "./components/content/Content";
 import Footer from "./components/footer/Footer";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route, Routes, useNavigate} from "react-router-dom";
+import Auth from "./components/auth/Auth";
+import {observer} from "mobx-react";
+import {authService} from './store/Auth'
 
 
-function App() {
-    return (
-        <BrowserRouter>
+const App = observer(() => {
+        const isAuth: boolean = authService.getAuth();
+        const navigate = useNavigate();
+        useEffect(() => {
+            navigate('/');
+        }, [])
+
+        return (
             <div className='wrapper'>
-                <Header/>
-                <Content/>
-                <Footer/>
+                {!isAuth &&
+                    <div className='auth'>
+                        <Auth/>
+                    </div>
+                }
+                <div className={'main' + ' ' + (isAuth ? '' : 'disable')}>
+                    <Header/>
+                    <Content/>
+                    <Footer/>
+                </div>
             </div>
-        </BrowserRouter>
-    );
-}
+        );
+    }
+)
 
 export default App;

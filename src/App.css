@@ -1,8 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@300;400;700&family=Poppins:wght@400;500;600;700;900&family=Rubik&display=swap');
 .wrapper {
     font-family: Montserrat;
+}
+.auth {
+    position: absolute;
+    width: 420px;
+    height: 440px;
+    top: calc(50% - 210px);
+    left: calc(50% - 220px);
+    background-color: white;
+}
+.main {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+}
+.disable {
+    pointer-events: none;
+
 }

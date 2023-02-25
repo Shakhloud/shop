@@ -14,6 +14,7 @@ const Content = () => {
                     <Routes>
                         <Route path='/promotion' element={<ProductSlider products={server.getStore().sliderProducts}/>}/>
                         <Route path='/catalog' element={<ProductPagination getPageData={server.getPageData}/>}/>
+                        <Route path='/' element={''}/>
                     </Routes>
                 </div>
             </div>

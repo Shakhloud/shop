@@ -1,4 +1,5 @@
 import promo1 from "./../img/content/promo_slider/promo1.png";
+import Auth from "../components/auth/Auth";
 
 export type Product = {
     id: number,
@@ -17,6 +18,12 @@ type Store = {
     sliderProducts: Array<Product>,
     paginationProducts: Array<Product>,
 };
+
+export type AuthResponse = {
+    isAuth: boolean,
+    login: string | null,
+    role: 'admin' | 'user' | null,
+}
 
 class Server {
     private readonly store: Store;
@@ -51,6 +58,46 @@ class Server {
             data: resultProductOnPage,
             maxPage: Math.ceil(countOfAllProducts / countOnOnePage),
         };
+    }
+
+    public makeAuth = (login: string, password: string): AuthResponse => {
+        switch (login) {
+            case 'admin' : {
+                if (password === 'admin') {
+                    return {
+                        isAuth: true,
+                        login: 'admin',
+                        role: 'admin'
+                    }
+                }
+                break;
+            }
+            case 'user1' : {
+                if (password === 'user1') {
+                    return {
+                        isAuth: true,
+                        login: 'user1',
+                        role: 'user'
+                    }
+                }
+                break;
+            }
+            case 'user2' : {
+                if (password === 'user2') {
+                    return {
+                        isAuth: true,
+                        login: 'user2',
+                        role: 'user'
+                    }
+                }
+                break;
+            }
+        }
+        return {
+            isAuth: false,
+            login: null,
+            role: null,
+        }
     }
 }
 
