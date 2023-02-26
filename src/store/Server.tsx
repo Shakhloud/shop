@@ -1,7 +1,7 @@
 import promo1 from "./../img/content/promo_slider/promo1.png";
 import Auth from "../components/auth/Auth";
 import FrontendBasketContent from "../components/content/basket/basket_content/BasketContent";
-import {FrontendBasket, FrontendBasketItem} from "./Basket";
+import {Color, FrontendBasket, FrontendBasketItem, Size} from "./Basket";
 
 export type Product = {
     id: number,
@@ -13,8 +13,8 @@ export type Product = {
 
 type ServerBasketItem = {
     productId: number,
-    size: 'XL' | 'XXL' | 'M' | 'S',
-    color: 'Серый' | 'Черный' | 'Белый' | 'Желтый' | 'Голубой',
+    size: Size,
+    color: Color,
     count: number,
     commonCost: number,
 }
@@ -193,6 +193,26 @@ class Server {
             case 'user2': {
                 const deleteIndex = this.store.user2Basket.items.map(item => item.productId).indexOf(item.product.id);
                 delete this.store.user2Basket.items[deleteIndex];
+                break;
+            }
+        }
+    }
+
+    public changeSizeOfItemInBasket(login: string, size: Size, productId: number) {
+        switch (login) {
+            case 'admin' : {
+                const currentItem = this.store.adminBasket?.items.filter(item => item.productId === productId)[0];
+                currentItem.size = size;
+                break;
+            }
+            case 'user1' : {
+                const currentItem = this.store.user1Basket?.items.filter(item => item.productId === productId)[0];
+                currentItem.size = size;
+                break;
+            }
+            case 'user2': {
+                const currentItem = this.store.user2Basket?.items.filter(item => item.productId === productId)[0];
+                currentItem.size = size;
                 break;
             }
         }
@@ -526,8 +546,8 @@ const createStore: () => Store = () => {
                 [
                     {
                         productId: 39,
-                        size: 'XL',
-                        color: 'Серый',
+                        size: {size: 'XL'},
+                        color: {color: 'Серый'},
                         count: 3,
                         commonCost: 9000,
                     }
@@ -538,8 +558,8 @@ const createStore: () => Store = () => {
                 [
                     {
                         productId: 33,
-                        size: 'M',
-                        color: 'Белый',
+                        size: {size: 'M'},
+                        color: {color: 'Белый'},
                         count: 3,
                         commonCost: 15000,
                     }
@@ -550,8 +570,8 @@ const createStore: () => Store = () => {
                 [
                     {
                         productId: 37,
-                        size: 'S',
-                        color: 'Черный',
+                        size: {size: 'S'},
+                        color: {color: 'Черный'},
                         count: 3,
                         commonCost: 3000,
                     }

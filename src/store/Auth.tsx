@@ -3,9 +3,9 @@ import {makeAutoObservable} from 'mobx'
 class AuthService {
     private isAuth: boolean = true
 
-    private login: string | null = null
+    private login: string | null = 'admin'
 
-    private role: 'admin' | 'user' | null = null
+    private role: 'admin' | 'user' | null = 'admin'
 
     constructor() {
         makeAutoObservable(this);

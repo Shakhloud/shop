@@ -1,10 +1,18 @@
 import {makeAutoObservable} from 'mobx'
-import {Product} from './../store/Server'
+import {Product, server} from './../store/Server'
+import {authService} from "./Auth";
+
+export type Size = {
+    size: 'XL' | 'XXL' | 'M' | 'S',
+}
+export type Color = {
+    color: 'Серый' | 'Черный' | 'Белый' | 'Желтый' | 'Голубой';
+}
 
 export type FrontendBasketItem = {
     product: Product,
-    size: 'XL' | 'XXL' | 'M' | 'S',
-    color: 'Серый' | 'Черный' | 'Белый' | 'Желтый' | 'Голубой',
+    size: Size,
+    color: Color,
     count: number,
     commonCost: number,
 }
@@ -26,6 +34,12 @@ class BasketService {
 
     setBasket(basket: FrontendBasket | null) {
         this.basket = basket;
+    }
+
+    update() {
+        const login = authService.getLogin();
+        if (!login) return;
+        this.setBasket(server.getBasket(login));
     }
 }
 

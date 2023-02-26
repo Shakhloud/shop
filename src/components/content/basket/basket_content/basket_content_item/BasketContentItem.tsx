@@ -1,11 +1,12 @@
 import React from 'react';
 import classes from "./BasketContentItem.module.css";
 import {Select, Input, Slider} from 'antd';
+import productItemContent from "../../../product_item_content/ProductItemContent";
 
 const BasketContentItem = (props: any) => {
 
-    const sizeHandler = (e:any) => {
-        console.log(e);
+    const sizeHandler = (e: any) => {
+        props.setSize({size: e}, props.id)
     }
 
     return (
@@ -13,6 +14,7 @@ const BasketContentItem = (props: any) => {
             <img src={props.image} alt="Фотография товара."/>
             <span>{props.title}</span>
             <Select
+                onChange={sizeHandler}
                 value={props.size}
                 options={[
                     {
@@ -58,17 +60,17 @@ const BasketContentItem = (props: any) => {
                     },
                 ]}
             />
-            <div className={classes.countBtn}>
+            <span className={classes.countBtn}>
                 <button>-</button>
                 {props.count}
                 <button>+</button>
-            </div>
-            <div className={classes.commonCost}>
-                {props.commonCost}
-            </div>
-            <div className={classes.deleteBtn}>
+            </span>
+            <span className={classes.commonCost}>
+                {props.commonCost}$
+            </span>
+            <span className={classes.deleteBtn}>
                 <button>x</button>
-            </div>
+            </span>
         </div>
     )
 }
