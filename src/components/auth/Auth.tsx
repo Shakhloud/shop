@@ -8,7 +8,7 @@ import {observer} from "mobx-react";
 const Auth = observer((props: any) => {
         const loginRef = useRef(null);
         const passwordRef = useRef(null);
-        const [isError,setIsError] = useState(false);
+        const [isError, setIsError] = useState(false);
         const isAuth: boolean = authService.getAuth();
         const isAuthBtnHandler = () => {
             const loginInput: any = loginRef.current;
@@ -23,15 +23,16 @@ const Auth = observer((props: any) => {
         return (
             <div className={classes.container}>
                 <div className={classes.container__title}>Вход</div>
-                <div className={classes.container__main}>
-                    <input className={classes.container__form} type="text" name='login' ref={loginRef}/>
-                    <input className={classes.container__form} type="password" name='password' ref={passwordRef}/>
-                </div>
                 {isError &&
                     <div className={classes.container__error}>
                         Неправильный логин или пароль.
                     </div>
                 }
+                <div className={classes.container__main}>
+                    <input className={classes.container__form} type="text" name='login' ref={loginRef} placeholder='Login'/>
+                    <input className={classes.container__form} type="password" name='password' ref={passwordRef}
+                           placeholder='Password'/>
+                </div>
                 <div>
                     <button onClick={isAuthBtnHandler} className={classes.container__inputBtn}>Вход</button>
                 </div>

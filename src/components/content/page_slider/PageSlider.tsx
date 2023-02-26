@@ -32,7 +32,6 @@ const PageSlider = (props: any) => {
         }
     }
 
-    debugger
     return <div className={classes.container + ' ' + (props.maxPage === 0 ? classes.btn__hide : '')}>
         <div className={props.maxPage === 1 ? classes.btn__hide : ''}>
             <button onClick={prevItemHandler} className={classes.arrow}><img src={arrowLeft} alt="Стрелка влево"/>

@@ -1,16 +1,17 @@
 
-
 .navbar {
     margin: 25px 0 16px 0;
     display: flex;
     justify-content: space-between;
 }
+
 .kategorie {
     transition: 0.2s;
     color: white;
     font-weight: 300;
     font-size: 16px;
 }
+
 .kategorie__link {
     text-decoration: none;
 

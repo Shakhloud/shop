@@ -1,8 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import classes from "./Navbar.module.css";
 
-const Havbar = (props:any) => {
+const Havbar = (props: any) => {
     return <div className={classes.navbar}>
         <NavLink to="/services" className={classes.kategorie__link}>
             <div className={classes.kategorie}>

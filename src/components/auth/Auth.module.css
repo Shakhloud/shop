@@ -1,3 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 .container {
-    border: 1px solid black;
+    position: absolute;
+    text-align: center;
+    width: 420px;
+    height: 440px;
+    top: calc(50% - 210px);
+    left: calc(50% - 220px);
+    background-color:#111111;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: skewX(-2.5deg);
+}
+
+.container__title {
+    margin-top: 35px;
+    font-weight: 700;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+
+.container__main {
+    margin-top: 56px;
+}
+
+.container__form {
+    display: block;
+    margin: 10px auto 0 auto;
+    background-color: black;
+    padding: 12px 15px;
+    border: none;
+    width: 340px;
+    color: #FFC700;
+    font-size: 14px;
+}
+
+.container__form::placeholder {
+    font-family: 'Inter';
+    font-size: 14px;
+    line-height: 15px;
+    color: #FFC700;
+}
+
+.container__error {
+    margin-top: 18px;
+    font-size: 14px;
+    color: #FFC700;
+}
+
+.container__inputBtn {
+    margin-top: 74px;
+    padding: 15px 80px;
+    border: 1px solid #FFC700;
+    background-color: black;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #FFC700;
+    transition: 0.5s;
+}
+.container__inputBtn:hover {
+    background-color: #232323;
+    transition: 0.5s;
+}
+
+.container__inputBtn:active {
+    background-color: black;
 }

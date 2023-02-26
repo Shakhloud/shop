@@ -1,11 +1,12 @@
 .top {
     margin-top: 20px;
     display: grid;
-    grid-template-areas: 'search logo languages icons';
-    grid-template-columns: 5fr 5fr 1fr auto;
+    grid-template-areas: 'search logo languages loginName icons';
+    grid-template-columns: 5fr 5fr 1fr auto 1fr;
     align-items: center;
     justify-content: end;
 }
+
 .search {
     grid-area: search;
     display: inline-flex;
@@ -14,17 +15,21 @@
     border-radius: 15px;
     background-color: black;
 }
+
 .logo {
     grid-area: logo;
 }
+
 .search__icon {
     margin-right: 4px;
 }
+
 .search__form {
     background-color: black;
     border: none;
     color: white;
 }
+
 /*Изменение цвета placeholder*/
 .search__form::placeholder {
     color: white;
@@ -45,9 +50,20 @@
     color: white;
 }
 
+.loginName {
+    grid-area: loginName;
+    color: white;
+    margin-right: 30px;
+}
+
 .icons {
     grid-area: icons;
 }
+
 .icons img:not(:last-child) {
     margin-right: 30px;
+}
+
+.exit {
+    max-width: 25px;
 }

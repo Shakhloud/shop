@@ -12,7 +12,7 @@ const ProductPagination = (props: any) => {
     const [itemsOnOnePage, setItemsOnOnePage] = useState(8);
     const [filterMode, setFilterMode] = useState(0);
     const [filterItemName, setFilterItemName] = useState('');
-    const [filterCurrentMaxValue, setFilterCurrentMaxValue] = useState(15000);
+    const [filterCurrentMaxValue, setFilterCurrentMaxValue] = useState(20000);
     const [filterCurrentMinValue, setFilterCurrentMinValue] = useState(0);
 
     useEffect(() => {
@@ -31,6 +31,11 @@ const ProductPagination = (props: any) => {
         if (e.value !== 1) {
             setFilterItemName('');
         }
+        if (e.value === '0') {
+            console.log(e);
+            setFilterCurrentMaxValue(20000);
+            setFilterCurrentMinValue(0);
+        }
     };
 
     const filterInputHandler = (e: any) => {
@@ -44,35 +49,45 @@ const ProductPagination = (props: any) => {
         setFilterCurrentMinValue(e[0]);
     };
 
-    debugger
     return <div>
         <div className={classes.header}>
             <div className={classes.title}><span>Дж</span>инсы <span className={classes.title__under}>Любые размеры и формы</span>
             </div>
-            <div>
-                <Select
-                    labelInValue
-                    defaultValue={{value: '0', label: 'Выберите режим фильтра'}}
-                    onChange={filterModeHandler}
-                    options={[
-                        {
-                            value: '0',
-                            label: 'Без фильра',
-                        },
-                        {
-                            value: '1',
-                            label: 'Фильтр по имени',
-                        },
-                        {
-                            value: '2',
-                            label: 'Фильтр по цене',
-                        },
+            <div className={classes.filter}>
+                Фильтр :
+                <div className={classes.filter__form}>
+                    <Select
+                        className={classes.filter__form}
+                        style = {{
+                            color: '#FFC700',
+                            width: 220,
 
-                    ]}
-                />
+                        }}
+                        labelInValue
+                        defaultValue={{value: '0', label: 'Выберите режим фильтра'}}
+                        onChange={filterModeHandler}
+
+                        options={[
+                            {
+                                value: '0',
+                                label: 'Без фильтра',
+                            },
+                            {
+                                value: '1',
+                                label: 'Фильтр по имени',
+                            },
+                            {
+                                value: '2',
+                                label: 'Фильтр по цене',
+                            },
+
+                        ]}
+                    />
+                </div>
                 {(filterMode === 1) ?
-                    <Input placeholder="Введите имя товара" value={filterItemName} onChange={filterInputHandler}/> : ''}
+                    <Input className={classes.input} placeholder="Введите имя товара" value={filterItemName} onChange={filterInputHandler}/> : ''}
                 {(filterMode === 2) ? <Slider
+                    className={classes.slider}
                     range
                     min={0}
                     max={20000}
@@ -82,25 +97,29 @@ const ProductPagination = (props: any) => {
                 /> : ''}
 
             </div>
-            <Select
-                labelInValue
-                defaultValue={{value: '8', label: '8'}}
-                onChange={itemsOnOnePageHandler}
-                options={[
-                    {
-                        value: '4',
-                        label: '4',
-                    },
-                    {
-                        value: '8',
-                        label: '8',
-                    },
-                    {
-                        value: '16',
-                        label: '16',
-                    },
-                ]}
-            />
+            <div className={classes.pageNumber}>
+                На странице:
+                <Select
+                    className={classes.pageNumber__select}
+                    labelInValue
+                    defaultValue={{value: '8', label: '8'}}
+                    onChange={itemsOnOnePageHandler}
+                    options={[
+                        {
+                            value: '4',
+                            label: '4',
+                        },
+                        {
+                            value: '8',
+                            label: '8',
+                        },
+                        {
+                            value: '16',
+                            label: '16',
+                        },
+                    ]}
+                />
+            </div>
         </div>
         <div className={classes.container}>
             {currentProducts.map((product) => <div key={product.id} className={classes.productItem}><ProductItemContent
