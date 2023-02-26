@@ -57,11 +57,10 @@ const ProductPagination = (props: any) => {
                 Фильтр :
                 <div className={classes.filter__form}>
                     <Select
-                        className={classes.filter__form}
+                        dropdownClassName = {classes.filter__formDropdown}
                         style = {{
                             color: '#FFC700',
                             width: 220,
-
                         }}
                         labelInValue
                         defaultValue={{value: '0', label: 'Выберите режим фильтра'}}

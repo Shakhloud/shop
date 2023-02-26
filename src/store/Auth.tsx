@@ -1,7 +1,7 @@
 import {makeAutoObservable} from 'mobx'
 
 class AuthService {
-    private isAuth: boolean = false
+    private isAuth: boolean = true
 
     private login: string | null = null
 

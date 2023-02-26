@@ -60,10 +60,10 @@
     grid-area: icons;
 }
 
-.icons img:not(:last-child) {
-    margin-right: 30px;
-}
-
 .exit {
     max-width: 25px;
+}
+
+.cart {
+    margin-right: 20px;
 }

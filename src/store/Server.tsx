@@ -1,5 +1,7 @@
 import promo1 from "./../img/content/promo_slider/promo1.png";
 import Auth from "../components/auth/Auth";
+import FrontendBasketContent from "../components/content/basket/basket_content/BasketContent";
+import {FrontendBasket, FrontendBasketItem} from "./Basket";
 
 export type Product = {
     id: number,
@@ -9,6 +11,14 @@ export type Product = {
     cost: number,
 };
 
+type ServerBasketItem = {
+    productId: number,
+    size: 'XL' | 'XXL' | 'M' | 'S',
+    color: 'Серый' | 'Черный' | 'Белый' | 'Желтый' | 'Голубой',
+    count: number,
+    commonCost: number,
+}
+
 type PageResponse = {
     data: Array<Product>,
     maxPage: number,
@@ -17,7 +27,16 @@ type PageResponse = {
 type Store = {
     sliderProducts: Array<Product>,
     paginationProducts: Array<Product>,
+
+    allProducts: Array<Product>,
+    adminBasket: ServerBasket,
+    user1Basket: ServerBasket,
+    user2Basket: ServerBasket,
 };
+
+type ServerBasket = {
+    items: Array<ServerBasketItem>;
+}
 
 export type AuthResponse = {
     isAuth: boolean,
@@ -30,6 +49,10 @@ class Server {
 
     constructor() {
         this.store = createStore();
+        this.store.allProducts = [
+            ...this.store.paginationProducts,
+            ...this.store.sliderProducts,
+        ]
     }
 
     public getStore(): Store {
@@ -98,41 +121,117 @@ class Server {
             role: null,
         }
     }
+    public getBasket = (login: string): FrontendBasket | null => {
+        switch (login) {
+            case 'admin' : {
+                return this.transformBasket(this.store.adminBasket);
+            }
+            case 'user1' : {
+                return this.transformBasket(this.store.user1Basket);
+
+            }
+            case 'user2': {
+                return this.transformBasket(this.store.user2Basket);
+            }
+        }
+        return null;
+    }
+    public transformBasket = (serverBasket: ServerBasket): FrontendBasket => {
+        return {
+            items: serverBasket.items.map(item => {
+                const productIndex = this.store.allProducts.map(item => item.id).indexOf(item.productId);
+                return {
+                    product: this.store.allProducts[productIndex],
+                    size: item.size,
+                    color: item.color,
+                    count: item.count,
+                    commonCost: item.commonCost,
+                }
+            })
+        }
+    }
+
+    public transformBasketItem = (frontendBasketItem: FrontendBasketItem): ServerBasketItem => {
+        return {
+            productId: frontendBasketItem.product.id,
+            size: frontendBasketItem.size,
+            color: frontendBasketItem.color,
+            count: frontendBasketItem.count,
+            commonCost: frontendBasketItem.commonCost,
+        }
+    }
+
+    public addBasketItem(login: string, item: FrontendBasketItem) {
+        switch (login) {
+            case 'admin' : {
+                this.store.adminBasket.items.push(this.transformBasketItem(item));
+                break;
+            }
+            case 'user1' : {
+                this.store.user1Basket.items.push(this.transformBasketItem(item));
+                break;
+            }
+            case 'user2': {
+                this.store.user2Basket.items.push(this.transformBasketItem(item));
+                break;
+            }
+        }
+    }
+
+    public deleteBasketItem(login: string, item: FrontendBasketItem) {
+        switch (login) {
+            case 'admin' : {
+                const deleteIndex = this.store.adminBasket.items.map(item => item.productId).indexOf(item.product.id);
+                delete this.store.adminBasket.items[deleteIndex];
+                break;
+            }
+            case 'user1' : {
+                const deleteIndex = this.store.user1Basket.items.map(item => item.productId).indexOf(item.product.id);
+                delete this.store.user1Basket.items[deleteIndex];
+                break;
+            }
+            case 'user2': {
+                const deleteIndex = this.store.user2Basket.items.map(item => item.productId).indexOf(item.product.id);
+                delete this.store.user2Basket.items[deleteIndex];
+                break;
+            }
+        }
+    }
 }
 
 const createStore: () => Store = () => {
     return {
         sliderProducts: [
             {
-                id: 0,
+                id: 40,
                 image: 'https://www.machinescreenprinters.com.au/wp-content/uploads/2021/10/alstyle_1301_gold.jpg',
                 title: 'T-shirt #1',
                 desc: null,
                 cost: 15000,
             },
             {
-                id: 1,
+                id: 41,
                 image: 'https://www.machinescreenprinters.com.au/wp-content/uploads/2021/10/alstyle_1301_gold.jpg',
                 title: 'T-shirt #2',
                 desc: null,
                 cost: 13000,
             },
             {
-                id: 2,
+                id: 42,
                 image: 'https://www.machinescreenprinters.com.au/wp-content/uploads/2021/10/alstyle_1301_gold.jpg',
                 title: 'T-shirt #3',
                 desc: null,
                 cost: 16000,
             },
             {
-                id: 3,
+                id: 43,
                 image: 'https://www.machinescreenprinters.com.au/wp-content/uploads/2021/10/alstyle_1301_gold.jpg',
                 title: 'T-shirt #4',
                 desc: null,
                 cost: 19000,
             },
             {
-                id: 4,
+                id: 44,
                 image: 'https://www.machinescreenprinters.com.au/wp-content/uploads/2021/10/alstyle_1301_gold.jpg',
                 title: 'T-shirt #5',
                 desc: null,
@@ -376,7 +475,7 @@ const createStore: () => Store = () => {
                 image: 'https://www.gloria-jeans.ru/pictures/dzinsy-mom-dla-devocki_GJN016777-2_01_515Wx515H.jpg',
                 title: 'Jeans #34',
                 desc: null,
-                cost: 3000,
+                cost: 5000,
             },
             {
                 id: 34,
@@ -404,7 +503,7 @@ const createStore: () => Store = () => {
                 image: 'https://minnim.ua/image/cache/catalog/%2017.01.22/8-450x675.jpg',
                 title: 'Jeans #38',
                 desc: null,
-                cost: 3000,
+                cost: 1000,
             },
             {
                 id: 38,
@@ -420,7 +519,44 @@ const createStore: () => Store = () => {
                 desc: null,
                 cost: 3000,
             },
-        ]
+        ],
+        allProducts: [],
+        adminBasket: {
+            items:
+                [
+                    {
+                        productId: 39,
+                        size: 'XL',
+                        color: 'Серый',
+                        count: 3,
+                        commonCost: 9000,
+                    }
+                ]
+        },
+        user1Basket: {
+            items:
+                [
+                    {
+                        productId: 33,
+                        size: 'M',
+                        color: 'Белый',
+                        count: 3,
+                        commonCost: 15000,
+                    }
+                ]
+        },
+        user2Basket: {
+            items:
+                [
+                    {
+                        productId: 37,
+                        size: 'S',
+                        color: 'Черный',
+                        count: 3,
+                        commonCost: 3000,
+                    }
+                ]
+        }
     }
 }
 export const server = new Server();

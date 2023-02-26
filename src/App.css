@@ -19,5 +19,9 @@
 }
 .disable {
     pointer-events: none;
-
+}
+.ant-select-selector {
+    border: 1px solid black !important;
+    background-color: #FFC700 !important;
+    transform: skewX(-10deg) !important;
 }

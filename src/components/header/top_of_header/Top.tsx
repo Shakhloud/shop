@@ -7,6 +7,8 @@ import exit from "./../../../img/header/top/exit.svg";
 import {authService} from './../../../store/Auth';
 import {NavLink, useNavigate} from "react-router-dom";
 import {observer} from "mobx-react";
+import {basketService} from "../../../store/Basket";
+import {server} from "../../../store/Server";
 
 const Top = observer((props: any) => {
         const navigate = useNavigate();
@@ -16,7 +18,12 @@ const Top = observer((props: any) => {
             authService.setRole(null);
             authService.setLogin(null);
         }
-
+        const basketClickHandler = () => {
+            const login = authService.getLogin();
+            if (!login) return;
+            const basket = server.getBasket(login);
+            basketService.setBasket(basket);
+        }
         return <div className={classes.top}>
             <form action="#" method="get">
                 <div className={classes.search}>
@@ -42,9 +49,11 @@ const Top = observer((props: any) => {
                 </div>
             }
             <div className={classes.icons}>
-                <img className={classes.cart}
-                     alt={"Иконка корзины"}
-                     src={cart}/>
+                <NavLink to={'/basket'} onClick={basketClickHandler}>
+                    <img className={classes.cart}
+                         alt={"Иконка корзины"}
+                         src={cart}/>
+                </NavLink>
                 <img onClick={unAuthHandler} className={classes.exit}
                      alt={"Иконка выхода"}
                      src={exit}/>

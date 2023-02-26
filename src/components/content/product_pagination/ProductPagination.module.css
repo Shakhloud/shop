@@ -58,10 +58,6 @@
 .filter__form {
     display: inline-block;
     margin-left: 20px;
-
-}
-
-.filter__form {
 }
 
 .input {
@@ -86,7 +82,6 @@
 .dropdownMenu {
     background-color: #FFC700;
     border: 1px solid black;
-
 }
 
 .pageNumber {
@@ -98,4 +93,9 @@
 
 .pageNumber__select {
     margin-left: 14px;
+}
+
+.filter__formDropdown {
+    background-color: #FFC700;
+    border: 1px solid black;
 }
