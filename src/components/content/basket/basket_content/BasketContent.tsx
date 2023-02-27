@@ -14,6 +14,13 @@ const BasketContent = observer((props: any) => {
             server.changeSizeOfItemInBasket(login, size, productId);
             basketService.update();
         }
+        const setColor = (color: Color, productId: number) => {
+            const login = authService.getLogin();
+            if (!login) return;
+            server.changeColorOfItemInBasket(login, color, productId);
+            basketService.update();
+        }
+
         return (
             <div className={classes.container}>
                 <div className={classes.title}>
@@ -30,7 +37,8 @@ const BasketContent = observer((props: any) => {
                             color={item.color.color}
                             count={item.count}
                             commonCost={item.commonCost}
-                            setSize={setSize}/>)
+                            setSize={setSize}
+                            setColor={setColor}/>)
                     }
                 </div>
             </div>

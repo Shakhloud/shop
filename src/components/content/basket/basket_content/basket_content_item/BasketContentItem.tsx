@@ -3,11 +3,46 @@ import classes from "./BasketContentItem.module.css";
 import {Select, Input, Slider} from 'antd';
 import productItemContent from "../../../product_item_content/ProductItemContent";
 import deleteBtn from './../../../../../img/content/basket/deleteBtn.svg'
+import {basketService, Color} from "../../../../../store/Basket";
+import {authService} from "../../../../../store/Auth";
+import {server} from "../../../../../store/Server";
+import {disabled} from "react-widgets/PropTypes";
 
 const BasketContentItem = (props: any) => {
 
     const sizeHandler = (e: any) => {
         props.setSize({size: e}, props.id)
+    }
+    const colorHandler = (e: any) => {
+        props.setColor({color: e}, props.id)
+    }
+
+    const countPlus = () => {
+        const newCount = props.count + 1;
+        const newCommonCost = (props.commonCost / props.count) * newCount;
+        setCount(newCount, props.id);
+        setCommonCost(newCommonCost, props.id);
+    }
+    const countMinus = () => {
+        if (props.count > 1) {
+            const newCount = props.count - 1;
+            const newCommonCost = (props.commonCost / props.count) * newCount;
+            setCount(newCount, props.id);
+            setCommonCost(newCommonCost, props.id);
+        }
+    }
+
+    const setCount = (newCount: number, productId: number) => {
+        const login = authService.getLogin();
+        if (!login) return;
+        server.changeCountOfItemInBasket(login, newCount, productId);
+        basketService.update();
+    }
+    const setCommonCost = (newCommonCost: number, productId: number) => {
+        const login = authService.getLogin();
+        if (!login) return;
+        server.changeCommonCostOfItemInBasket(login, newCommonCost, productId);
+        basketService.update();
     }
 
     return (
@@ -42,6 +77,7 @@ const BasketContentItem = (props: any) => {
                 dropdownClassName={classes.formDropdown}
                 className={classes.color}
                 value={props.color}
+                onChange={colorHandler}
                 options={[
                     {
                         value: 'Серый',
@@ -66,9 +102,9 @@ const BasketContentItem = (props: any) => {
                 ]}
             />
             <span className={classes.countBtn}>
-                <button>-</button>
+                <button onClick={countMinus}>-</button>
                 {props.count}
-                <button>+</button>
+                <button onClick={countPlus}>+</button>
             </span>
             <span className={classes.commonCost}>
                 {props.commonCost} $

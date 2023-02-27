@@ -217,7 +217,66 @@ class Server {
             }
         }
     }
+
+    public changeColorOfItemInBasket(login: string, color: Color, productId: number) {
+        switch (login) {
+            case 'admin' : {
+                const currentItem = this.store.adminBasket?.items.filter(item => item.productId === productId)[0];
+                currentItem.color = color;
+                break;
+            }
+            case 'user1' : {
+                const currentItem = this.store.user1Basket?.items.filter(item => item.productId === productId)[0];
+                currentItem.color = color;
+                break;
+            }
+            case 'user2': {
+                const currentItem = this.store.user2Basket?.items.filter(item => item.productId === productId)[0];
+                currentItem.color = color;
+                break;
+            }
+        }
+    }
+    public changeCountOfItemInBasket(login: string, count: number, productId: number) {
+        switch (login) {
+            case 'admin' : {
+                const currentItem = this.store.adminBasket?.items.filter(item => item.productId === productId)[0];
+                currentItem.count = count;
+                break;
+            }
+            case 'user1' : {
+                const currentItem = this.store.user1Basket?.items.filter(item => item.productId === productId)[0];
+                currentItem.count = count;
+                break;
+            }
+            case 'user2': {
+                const currentItem = this.store.user2Basket?.items.filter(item => item.productId === productId)[0];
+                currentItem.count = count;
+                break;
+            }
+        }
+    }
+    public changeCommonCostOfItemInBasket(login: string, commonCost: number, productId: number) {
+        switch (login) {
+            case 'admin' : {
+                const currentItem = this.store.adminBasket?.items.filter(item => item.productId === productId)[0];
+                currentItem.commonCost = commonCost;
+                break;
+            }
+            case 'user1' : {
+                const currentItem = this.store.user1Basket?.items.filter(item => item.productId === productId)[0];
+                currentItem.commonCost = commonCost;
+                break;
+            }
+            case 'user2': {
+                const currentItem = this.store.user2Basket?.items.filter(item => item.productId === productId)[0];
+                currentItem.commonCost = commonCost;
+                break;
+            }
+        }
+    }
 }
+
 
 const createStore: () => Store = () => {
     return {
