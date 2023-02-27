@@ -2,9 +2,20 @@ import React from 'react';
 import classes from "./ProductItemContent.module.css";
 
 const ProductItemContent = (props: any) => {
+    const addItemHandler = () => {
+        if (!props.login) return;
+        props.addItem(props.login,props.productId);
+        props.updateBasket();
+    }
+
     return (
         <div className={classes.container}>
-            <div className={classes.image}><img src={props.image} alt="Фотография товара"/></div>
+            <div className={classes.image}>
+                <div className={classes.image__btns}>
+                    <button onClick={addItemHandler} className={classes.btnItem}>Добавить в корзину</button>
+                    <button className={classes.btnItem}>Подробнее</button>
+                </div>
+                <img src={props.image} alt="Фотография товара"/></div>
             <div className={classes.title}>
                 {props.title}
             </div>

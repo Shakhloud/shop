@@ -4,6 +4,9 @@ import {Product} from "./../../../store/Server";
 import ProductItemContent from "../product_item_content/ProductItemContent";
 import PageSlider from "../page_slider/PageSlider";
 import {Select, Input, Slider} from 'antd';
+import {server} from "./../../../store/Server";
+import {authService} from "../../../store/Auth";
+import { basketService } from '../../../store/Basket';
 
 const ProductPagination = (props: any) => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -57,8 +60,8 @@ const ProductPagination = (props: any) => {
                 Фильтр :
                 <div className={classes.filter__form}>
                     <Select
-                        dropdownClassName = {classes.filter__formDropdown}
-                        style = {{
+                        dropdownClassName={classes.filter__formDropdown}
+                        style={{
                             color: '#FFC700',
                             width: 220,
                         }}
@@ -84,7 +87,8 @@ const ProductPagination = (props: any) => {
                     />
                 </div>
                 {(filterMode === 1) ?
-                    <Input className={classes.input} placeholder="Введите имя товара" value={filterItemName} onChange={filterInputHandler}/> : ''}
+                    <Input className={classes.input} placeholder="Введите имя товара" value={filterItemName}
+                           onChange={filterInputHandler}/> : ''}
                 {(filterMode === 2) ? <Slider
                     className={classes.slider}
                     range
@@ -99,7 +103,7 @@ const ProductPagination = (props: any) => {
             <div className={classes.pageNumber}>
                 На странице:
                 <Select
-                    dropdownClassName = {classes.filter__formDropdown}
+                    dropdownClassName={classes.filter__formDropdown}
                     className={classes.pageNumber__select}
                     labelInValue
                     defaultValue={{value: '8', label: '8'}}
@@ -123,6 +127,10 @@ const ProductPagination = (props: any) => {
         </div>
         <div className={classes.container}>
             {currentProducts.map((product) => <div key={product.id} className={classes.productItem}><ProductItemContent
+                updateBasket = {basketService.update.bind(basketService)}
+                productId={product.id}
+                login={authService.getLogin()}
+                addItem={server.addBasketItem.bind(server)}
                 image={product.image}
                 title={product.title}
                 cost={product.cost}/>

@@ -7,6 +7,8 @@ import {BrowserRouter, Route, Routes, useNavigate} from "react-router-dom";
 import Auth from "./components/auth/Auth";
 import {observer} from "mobx-react";
 import {authService} from './store/Auth'
+import {server} from "./store/Server";
+import {basketService} from "./store/Basket";
 
 
 const App = observer(() => {
@@ -14,6 +16,11 @@ const App = observer(() => {
         const navigate = useNavigate();
         useEffect(() => {
             navigate('/');
+            //Удалить после разработки
+            const login = authService.getLogin();
+            if (!login) return;
+            const basket = server.getBasket(login);
+            basketService.setBasket(basket);
         }, [])
 
         return (

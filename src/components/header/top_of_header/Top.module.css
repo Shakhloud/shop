@@ -62,8 +62,25 @@
 
 .exit {
     max-width: 25px;
+    margin-left: 20px;
+}
+.cart {
+    display: inline-block;
+    position: relative;
 }
 
-.cart {
-    margin-right: 20px;
+.cart img{
+}
+.countItem {
+    position: absolute;
+    width: 7px;
+    padding: 0 5px;
+    text-align: center;
+    background-color: #FFC700;
+    color: black;
+    border-radius: 100%;
+    font-size: 14px;
+    font-weight: 700;
+    right: -7px;
+    bottom: 0;
 }

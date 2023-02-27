@@ -151,28 +151,34 @@ class Server {
         }
     }
 
-    public transformBasketItem = (frontendBasketItem: FrontendBasketItem): ServerBasketItem => {
-        return {
-            productId: frontendBasketItem.product.id,
-            size: frontendBasketItem.size,
-            color: frontendBasketItem.color,
-            count: frontendBasketItem.count,
-            commonCost: frontendBasketItem.commonCost,
+    public addBasketItemForUser(productId: number, basket: ServerBasket) {
+        const filterItems = basket.items.filter(item => item.productId === productId);
+        if (filterItems.length === 0) {
+            basket.items.push({
+                productId: productId,
+                size: {size: 'S'},
+                color: {color: 'Белый'},
+                count: 1,
+                commonCost: this.store.allProducts.filter(item => item.id === productId)[0].cost,
+            });
+        } else {
+            filterItems[0].count = filterItems[0].count + 1;
         }
     }
 
-    public addBasketItem(login: string, item: FrontendBasketItem) {
+    public addBasketItem(login: string, productId: number) {
+        debugger
         switch (login) {
             case 'admin' : {
-                this.store.adminBasket.items.push(this.transformBasketItem(item));
+                this.addBasketItemForUser(productId, this.store.adminBasket);
                 break;
             }
             case 'user1' : {
-                this.store.user1Basket.items.push(this.transformBasketItem(item));
+                this.addBasketItemForUser(productId, this.store.user1Basket);
                 break;
             }
             case 'user2': {
-                this.store.user2Basket.items.push(this.transformBasketItem(item));
+                this.addBasketItemForUser(productId, this.store.user2Basket);
                 break;
             }
         }

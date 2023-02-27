@@ -12,18 +12,16 @@ import {server} from "../../../store/Server";
 
 const Top = observer((props: any) => {
         const navigate = useNavigate();
+        const basket = basketService.getBasket();
+
         const unAuthHandler = () => {
             navigate('/');
             authService.setAuth(false);
             authService.setRole(null);
             authService.setLogin(null);
+            basketService.setBasket(null);
         }
-        const basketClickHandler = () => {
-            const login = authService.getLogin();
-            if (!login) return;
-            const basket = server.getBasket(login);
-            basketService.setBasket(basket);
-        }
+
         return <div className={classes.top}>
             <form action="#" method="get">
                 <div className={classes.search}>
@@ -49,10 +47,17 @@ const Top = observer((props: any) => {
                 </div>
             }
             <div className={classes.icons}>
-                <NavLink to={'/basket'} onClick={basketClickHandler}>
-                    <img className={classes.cart}
-                         alt={"Иконка корзины"}
-                         src={cart}/>
+                <NavLink to={'/basket'}>
+                    <div className={classes.cart}>
+                        {basket?.items.length !== 0 &&
+                            <div className={classes.countItem}>
+                                {basket?.items.length}
+                            </div>
+                        }
+                        <img
+                             alt={"Иконка корзины"}
+                             src={cart}/>
+                    </div>
                 </NavLink>
                 <img onClick={unAuthHandler} className={classes.exit}
                      alt={"Иконка выхода"}

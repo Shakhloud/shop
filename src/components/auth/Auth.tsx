@@ -3,6 +3,7 @@ import classes from "./Auth.module.css";
 import {authService} from './../../store/Auth'
 import {server, AuthResponse} from './../../store/Server'
 import {observer} from "mobx-react";
+import {basketService} from "../../store/Basket";
 
 
 const Auth = observer((props: any) => {
@@ -18,6 +19,10 @@ const Auth = observer((props: any) => {
             authService.setLogin(authResponse.login);
             authService.setRole(authResponse.role);
             setIsError(!authResponse.isAuth);
+            const login = authService.getLogin();
+            if (!login) return;
+            const basket = server.getBasket(login);
+            basketService.setBasket(basket);
         }
 
         return (
