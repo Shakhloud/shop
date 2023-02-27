@@ -2,6 +2,7 @@ import React from 'react';
 import classes from "./BasketContentItem.module.css";
 import {Select, Input, Slider} from 'antd';
 import productItemContent from "../../../product_item_content/ProductItemContent";
+import deleteBtn from './../../../../../img/content/basket/deleteBtn.svg'
 
 const BasketContentItem = (props: any) => {
 
@@ -12,8 +13,10 @@ const BasketContentItem = (props: any) => {
     return (
         <div className={classes.container}>
             <img src={props.image} alt="Фотография товара."/>
-            <span>{props.title}</span>
+            <span className={classes.title}>{props.title}</span>
             <Select
+                dropdownClassName={classes.formDropdown}
+                className={classes.size}
                 onChange={sizeHandler}
                 value={props.size}
                 options={[
@@ -36,6 +39,8 @@ const BasketContentItem = (props: any) => {
                 ]}
             />
             <Select
+                dropdownClassName={classes.formDropdown}
+                className={classes.color}
                 value={props.color}
                 options={[
                     {
@@ -66,10 +71,10 @@ const BasketContentItem = (props: any) => {
                 <button>+</button>
             </span>
             <span className={classes.commonCost}>
-                {props.commonCost}$
+                {props.commonCost} $
             </span>
             <span className={classes.deleteBtn}>
-                <button>x</button>
+                <button><img src={deleteBtn} alt="Иконка крестика"/></button>
             </span>
         </div>
     )

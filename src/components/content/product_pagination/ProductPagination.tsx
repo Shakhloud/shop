@@ -99,6 +99,7 @@ const ProductPagination = (props: any) => {
             <div className={classes.pageNumber}>
                 На странице:
                 <Select
+                    dropdownClassName = {classes.filter__formDropdown}
                     className={classes.pageNumber__select}
                     labelInValue
                     defaultValue={{value: '8', label: '8'}}
