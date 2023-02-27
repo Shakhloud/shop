@@ -20,7 +20,6 @@ const BasketContent = observer((props: any) => {
             server.changeColorOfItemInBasket(login, color, productId);
             basketService.update();
         }
-
         return (
             <div className={classes.container}>
                 <div className={classes.title}>
@@ -30,6 +29,7 @@ const BasketContent = observer((props: any) => {
                     {
                         basket?.items.map(item => <BasketContentItem
                             key={item.product.id}
+                            product={item.product}
                             id={item.product.id}
                             image={item.product.image}
                             title={item.product.title}

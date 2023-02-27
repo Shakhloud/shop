@@ -178,21 +178,21 @@ class Server {
         }
     }
 
-    public deleteBasketItem(login: string, item: FrontendBasketItem) {
+    public deleteBasketItem(login: string, productId: number) {
         switch (login) {
             case 'admin' : {
-                const deleteIndex = this.store.adminBasket.items.map(item => item.productId).indexOf(item.product.id);
-                delete this.store.adminBasket.items[deleteIndex];
+                const deleteIndex = this.store.adminBasket.items.map(item => item.productId).indexOf(productId);
+                this.store.adminBasket.items.splice(deleteIndex, 1);
                 break;
             }
             case 'user1' : {
-                const deleteIndex = this.store.user1Basket.items.map(item => item.productId).indexOf(item.product.id);
-                delete this.store.user1Basket.items[deleteIndex];
+                const deleteIndex = this.store.user1Basket.items.map(item => item.productId).indexOf(productId);
+                this.store.user1Basket.items.splice(deleteIndex, 1);
                 break;
             }
             case 'user2': {
-                const deleteIndex = this.store.user2Basket.items.map(item => item.productId).indexOf(item.product.id);
-                delete this.store.user2Basket.items[deleteIndex];
+                const deleteIndex = this.store.user2Basket.items.map(item => item.productId).indexOf(productId);
+                this.store.user2Basket.items.splice(deleteIndex, 1);
                 break;
             }
         }
@@ -237,6 +237,7 @@ class Server {
             }
         }
     }
+
     public changeCountOfItemInBasket(login: string, count: number, productId: number) {
         switch (login) {
             case 'admin' : {
@@ -256,6 +257,7 @@ class Server {
             }
         }
     }
+
     public changeCommonCostOfItemInBasket(login: string, commonCost: number, productId: number) {
         switch (login) {
             case 'admin' : {

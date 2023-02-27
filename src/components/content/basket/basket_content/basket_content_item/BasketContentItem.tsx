@@ -3,7 +3,7 @@ import classes from "./BasketContentItem.module.css";
 import {Select, Input, Slider} from 'antd';
 import productItemContent from "../../../product_item_content/ProductItemContent";
 import deleteBtn from './../../../../../img/content/basket/deleteBtn.svg'
-import {basketService, Color} from "../../../../../store/Basket";
+import {basketService, Color, FrontendBasketItem, Size} from "../../../../../store/Basket";
 import {authService} from "../../../../../store/Auth";
 import {server} from "../../../../../store/Server";
 import {disabled} from "react-widgets/PropTypes";
@@ -17,19 +17,27 @@ const BasketContentItem = (props: any) => {
         props.setColor({color: e}, props.id)
     }
 
-    const countPlus = () => {
+    const countPlusHandler = () => {
         const newCount = props.count + 1;
         const newCommonCost = (props.commonCost / props.count) * newCount;
         setCount(newCount, props.id);
         setCommonCost(newCommonCost, props.id);
     }
-    const countMinus = () => {
+
+    const countMinusHandler = () => {
         if (props.count > 1) {
             const newCount = props.count - 1;
             const newCommonCost = (props.commonCost / props.count) * newCount;
             setCount(newCount, props.id);
             setCommonCost(newCommonCost, props.id);
         }
+    }
+
+    const deleteItemHandler = () => {
+        const login = authService.getLogin();
+        if (!login) return;
+        server.deleteBasketItem(login, props.id);
+        basketService.update();
     }
 
     const setCount = (newCount: number, productId: number) => {
@@ -44,6 +52,7 @@ const BasketContentItem = (props: any) => {
         server.changeCommonCostOfItemInBasket(login, newCommonCost, productId);
         basketService.update();
     }
+
 
     return (
         <div className={classes.container}>
@@ -102,15 +111,15 @@ const BasketContentItem = (props: any) => {
                 ]}
             />
             <span className={classes.countBtn}>
-                <button onClick={countMinus}>-</button>
+                <button onClick={countMinusHandler}>-</button>
                 {props.count}
-                <button onClick={countPlus}>+</button>
+                <button onClick={countPlusHandler}>+</button>
             </span>
             <span className={classes.commonCost}>
                 {props.commonCost} $
             </span>
             <span className={classes.deleteBtn}>
-                <button><img src={deleteBtn} alt="Иконка крестика"/></button>
+                <button onClick={deleteItemHandler}><img src={deleteBtn} alt="Иконка крестика"/></button>
             </span>
         </div>
     )
