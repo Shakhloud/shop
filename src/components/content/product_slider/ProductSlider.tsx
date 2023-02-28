@@ -3,6 +3,9 @@ import classes from "./ProductSlider.module.css";
 import arrowRight from "./../../../img/content/product_slider/arrow-right.svg";
 import arrowLeft from "./../../../img/content/product_slider/arrow-left.svg";
 import ProductItemContent from "../product_item_content/ProductItemContent";
+import {authService} from "../../../store/Auth";
+import {basketService} from "../../../store/Basket";
+import {server} from "../../../store/Server";
 
 const ProductSlider = (props: any) => {
     const [currentIndex, setIndex] = useState(0);
@@ -28,8 +31,15 @@ const ProductSlider = (props: any) => {
             <button onClick={prevItemHandler} className={classes.btn}>
                 <img src={arrowLeft} alt="Стрелка влево"/>
             </button>
-            <ProductItemContent image={products[currentIndex].image} title={products[currentIndex].title}
-                                desc={products[currentIndex].desc} cost={products[currentIndex].cost}/>
+            <ProductItemContent
+                addItem={server.addBasketItem.bind(server)}
+                updateBasket={basketService.update.bind(basketService)}
+                login={authService.getLogin()}
+                productId={products[currentIndex].id}
+                image={products[currentIndex].image}
+                title={products[currentIndex].title}
+                desc={products[currentIndex].desc}
+                cost={products[currentIndex].cost}/>
             <button onClick={nextItemHandler} className={classes.btn}>
                 <img src={arrowRight} alt="Стрелка вправо"/>
             </button>
