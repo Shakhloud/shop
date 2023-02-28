@@ -5,6 +5,7 @@ import {basketService, Size, Color} from "../../../../store/Basket";
 import {observer} from "mobx-react";
 import {server} from "../../../../store/Server";
 import {authService} from "../../../../store/Auth";
+import BasketOrder from "./basket_order/BasketOrder";
 
 const BasketContent = observer((props: any) => {
         const basket = basketService.getBasket();
@@ -40,6 +41,9 @@ const BasketContent = observer((props: any) => {
                                 setSize={setSize}
                                 setColor={setColor}/></div>)
                         }
+                </div>
+                <div>
+                    <BasketOrder />
                 </div>
             </div>
         )
