@@ -26,20 +26,20 @@ const BasketContent = observer((props: any) => {
                     Корзина
                 </div>
                 <div className={classes.basketItemContent}>
-                    {
-                        basket?.items.map(item => <BasketContentItem
-                            key={item.product.id}
-                            product={item.product}
-                            id={item.product.id}
-                            image={item.product.image}
-                            title={item.product.title}
-                            size={item.size.size}
-                            color={item.color.color}
-                            count={item.count}
-                            commonCost={item.commonCost}
-                            setSize={setSize}
-                            setColor={setColor}/>)
-                    }
+                        {
+                            basket?.items.map(item => <div className={classes.item}><BasketContentItem
+                                key={item.product.id}
+                                product={item.product}
+                                id={item.product.id}
+                                image={item.product.image}
+                                title={item.product.title}
+                                size={item.size.size}
+                                color={item.color.color}
+                                count={item.count}
+                                commonCost={item.commonCost}
+                                setSize={setSize}
+                                setColor={setColor}/></div>)
+                        }
                 </div>
             </div>
         )

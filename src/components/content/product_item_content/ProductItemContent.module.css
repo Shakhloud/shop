@@ -5,32 +5,6 @@
     text-align: center;
 }
 
-.image {
-    position: relative;
-    max-height: 290px;
-    object-position: bottom;
-    border-radius: 30px;
-    overflow: hidden;
-    transition: 0.3s;
-}
-.image__btns {
-    transition: 0.3s;
-    opacity: 0;
-    position: absolute;
-    bottom: 0;
-    left: 20%;
-}
-.btnItem {
-    display: block;
-    margin: 0 auto;
-}
-
-.image img {
-    width: 100%;
-    height: 100%;
-    object-position: bottom;
-}
-
 .title {
     margin-top: 10px;
     font-weight: 300;
@@ -48,11 +22,76 @@
     color: #F0F0F0;
 }
 
-.image:hover {
+.bgImg {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     transition: 0.3s;
-    opacity: 0.5;
+    background-color: black;
 }
-.image:hover .image__btns {
+
+.image {
+    position: relative;
+    max-height: 290px;
+    object-position: bottom;
+    border-radius: 30px;
+    overflow: hidden;
     transition: 0.3s;
+    z-index: 1;
+}
+
+.image__btns {
+    transition: 0.3s;
+    opacity: 0;
+    position: absolute;
+    bottom: 5%;
+    left: 17%;
+    z-index: 2;
+}
+
+.image__btns button {
+    width: 150px;
+    padding: 5px 15px;
+    background-color: #F0F0F0;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 700;
+}
+.image__btns button:hover {
+    transition: 0.3s;
+    background-color: #FFC700;
+}
+.image__btns button:active {
+    background-color: #d0a000;
+}
+
+.image__btns button:not(:last-child) {
+    margin-bottom: 8px;
+}
+
+.btnItem {
+    display: block;
+    margin: 0 auto;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-position: bottom;
+    transition: 0.3s;
+}
+
+.image:hover .image__btns {
     opacity: 1;
+    transition: 0.3s;
+}
+
+.image:hover .bgImg {
+    opacity: 0.5;
+    transition: 0.3s;
 }

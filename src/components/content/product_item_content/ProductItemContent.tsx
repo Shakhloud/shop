@@ -11,11 +11,12 @@ const ProductItemContent = (props: any) => {
     return (
         <div className={classes.container}>
             <div className={classes.image}>
+                <div className={classes.bgImg}></div>
                 <div className={classes.image__btns}>
                     <button onClick={addItemHandler} className={classes.btnItem}>Добавить в корзину</button>
                     <button className={classes.btnItem}>Подробнее</button>
                 </div>
-                <img src={props.image} alt="Фотография товара"/></div>
+                <img className={classes.productImg} src={props.image} alt="Фотография товара"/></div>
             <div className={classes.title}>
                 {props.title}
             </div>

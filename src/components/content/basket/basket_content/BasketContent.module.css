@@ -1,0 +1,28 @@
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+    border-radius: 9em;
+    background-color: #FFC700;
+}
+
+::-webkit-scrollbar {
+    border-radius: 9em;
+    width: 5px; /* ширина для вертикального скролла */
+    background-color: white;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 36px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 28px;
+}
+.basketItemContent {
+    width: 1250px;
+    max-height: 603px;
+    overflow: auto;
+}
+.item:not(:last-child){
+    margin-bottom: 55px;
+
+}

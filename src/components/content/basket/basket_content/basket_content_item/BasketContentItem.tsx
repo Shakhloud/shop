@@ -118,8 +118,8 @@ const BasketContentItem = (props: any) => {
             <span className={classes.commonCost}>
                 {props.commonCost} $
             </span>
-            <span className={classes.deleteBtn}>
-                <button onClick={deleteItemHandler}><img src={deleteBtn} alt="Иконка крестика"/></button>
+            <span onClick={deleteItemHandler} className={classes.deleteBtn}>
+                <button><img src={deleteBtn} alt="Иконка крестика"/></button>
             </span>
         </div>
     )
