@@ -1,22 +1,13 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import classes from "./Navbar.module.css";
+import {authService} from "./../../../store/Auth"
 
 const Havbar = (props: any) => {
     return <div className={classes.navbar}>
         <NavLink to="/services" className={classes.kategorie__link}>
             <div className={classes.kategorie}>
                 <span className={classes.kategorie__span}>Наши услуги</span>
-            </div>
-        </NavLink>
-        <NavLink to="/example_print" className={classes.kategorie__link}>
-            <div className={classes.kategorie}>
-                <span className={classes.kategorie__span}>Пример печати</span>
-            </div>
-        </NavLink>
-        <NavLink to="/promotion" className={classes.kategorie__link}>
-            <div className={classes.kategorie}>
-                <span className={classes.kategorie__span}>Акции и предложения</span>
             </div>
         </NavLink>
         <NavLink to="/top_sell" className={classes.kategorie__link}>
@@ -39,6 +30,13 @@ const Havbar = (props: any) => {
                 <span className={classes.kategorie__span}>Свяжитесь с нами</span>
             </div>
         </NavLink>
+        {authService.getRole() === "admin" &&
+            <NavLink to="/admin_panel" className={classes.kategorie__link}>
+                <div className={classes.kategorie}>
+                    <span className={classes.kategorie__span}>Панель администратора</span>
+                </div>
+            </NavLink>
+        }
     </div>
 }
 

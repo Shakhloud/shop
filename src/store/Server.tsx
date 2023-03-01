@@ -194,16 +194,19 @@ class Server {
             case 'admin' : {
                 const deleteIndex = this.store.adminBasket.items.map(item => item.productId).indexOf(productId);
                 this.store.adminBasket.items.splice(deleteIndex, 1);
+                this.calcTotalCostOfBasket(this.store.adminBasket);
                 break;
             }
             case 'user1' : {
                 const deleteIndex = this.store.user1Basket.items.map(item => item.productId).indexOf(productId);
                 this.store.user1Basket.items.splice(deleteIndex, 1);
+                this.calcTotalCostOfBasket(this.store.user1Basket);
                 break;
             }
             case 'user2': {
                 const deleteIndex = this.store.user2Basket.items.map(item => item.productId).indexOf(productId);
                 this.store.user2Basket.items.splice(deleteIndex, 1);
+                this.calcTotalCostOfBasket(this.store.user2Basket);
                 break;
             }
         }
@@ -291,29 +294,48 @@ class Server {
             }
         }
     }
-    public calcTotalCostOfBasket (basket: ServerBasket) {
+
+    public calcTotalCostOfBasket(basket: ServerBasket) {
         const resultCost = basket.items.reduce((sum, current) => sum + current.commonCost, 0)
-        basket.totalCost = resultCost;
+            basket.totalCost = resultCost;
     }
-    /*public calcCommonCostOfBasket(login: string) {
-        switch (login) {
-            case 'admin' : {
-                const resultCost = this.store.adminBasket.items.reduce((sum, current) => sum + current.commonCost, 0)
-                this.store.adminBasket.totalCost = resultCost;
-                break;
-            }
-            case 'user1' : {
-                const resultCost = this.store.user1Basket.items.reduce((sum, current) => sum + current.commonCost, 0)
-                this.store.user1Basket.totalCost = resultCost;
-                break;
-            }
-            case 'user2': {
-                const resultCost = this.store.user2Basket.items.reduce((sum, current) => sum + current.commonCost, 0)
-                this.store.user2Basket.totalCost = resultCost;
-                break;
-            }
+
+    public addNewProductToCatalog(image: string, title: string, desc: string | null, cost: number,) {
+        const newProduct: Product = {
+            id: this.store.allProducts.length + 1,
+            image: image,
+            title: title,
+            desc: desc,
+            cost: cost,
         }
-    }*/
+        this.store.paginationProducts.push(newProduct);
+        this.store.allProducts.push(newProduct);
+    }
+
+    public deleteProductFromCatalog(productId: number) {
+        const deleteIndexPagination = this.store.paginationProducts.map(item => item.id).indexOf(productId);
+        const deleteIndexAllProducts = this.store.allProducts.map(item => item.id).indexOf(productId);
+        this.store.paginationProducts.splice(deleteIndexPagination, 1);
+        this.store.allProducts.splice(deleteIndexAllProducts, 1);
+    }
+
+    public changeProductFromCatalog(productId: number, title: string | null, image: string | null, desc: string | null, cost: number | null) {
+        if (this.store.allProducts.filter(item => item.id === productId).length !== 0) {
+            const changeProductAllProduct = this.store.allProducts.filter(item => item.id === productId)[0];
+            if (title) changeProductAllProduct.title = title;
+            if (image) changeProductAllProduct.image = image;
+            if (desc) changeProductAllProduct.desc = desc;
+            if (cost) changeProductAllProduct.cost = cost;
+        }
+        if (this.store.paginationProducts.filter(item => item.id === productId).length !== 0) {
+            const changeProductPagination = this.store.paginationProducts.filter(item => item.id === productId)[0];
+            if (title) changeProductPagination.title = title;
+            if (image) changeProductPagination.image = image;
+            if (desc) changeProductPagination.desc = desc;
+            if (cost) changeProductPagination.cost = cost;
+        }
+
+    }
 }
 
 

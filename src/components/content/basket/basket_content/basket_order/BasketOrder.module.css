@@ -1,3 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 .container {
+    margin-top: 75px;
     color: white;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 36px;
+    text-align: center;
+}
+
+.content {
+    margin-top: 70px;
+    display: grid;
+    grid-template-areas: 'forms otherInfo';
+    grid-template-columns: 50% 50%;
+}
+
+.textForm {
+    display: block;
+    padding: 17px 25px 18px 25px;
+    width: 441px;
+    background: #111111;
+    border: none;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FFC700;
+}
+
+.textForm:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.textForm::placeholder {
+    color: #FFC700;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.error {
+    width: 441px;
+    text-align: center;
+    color: red;
+    font-size: 14px;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+.otherInfo{
+    display: flex;
+    flex-direction: column;
+}
+.radio {
+    display: flex;
+}
+.radio__title {
+    font-weight: 600;
+    font-size: 18px;
+}
+.radioBtn {
+    display: block;
+    margin-top: 15px;
+}
+.radio__btn {
+    border: none;
+}
+.radio__btn:checked {
+
+}
+.radio__label {
+
+}
+.otherInfo__totalCost{
+
+}
+.otherInfo__delivery {
+
+}
+.resultCost {
+
+}
+.submit__btn {
+
 }

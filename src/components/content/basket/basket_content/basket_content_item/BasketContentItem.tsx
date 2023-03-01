@@ -53,7 +53,6 @@ const BasketContentItem = (props: any) => {
         basketService.update();
     }
 
-
     return (
         <div className={classes.container}>
             <img src={props.image} alt="Фотография товара."/>

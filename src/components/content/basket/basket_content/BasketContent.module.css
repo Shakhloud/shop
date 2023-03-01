@@ -17,12 +17,49 @@
     text-align: center;
     margin-bottom: 28px;
 }
+
 .basketItemContent {
     width: 1250px;
     max-height: 603px;
     overflow: auto;
 }
-.item:not(:last-child){
+
+.item:not(:last-child) {
     margin-bottom: 55px;
+
+}
+
+.containerEmpty {
+    text-align: center;
+}
+
+.basketEmpty {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    color: #FFC700;
+}
+
+.navlinkBtn {
+    margin-top: 15px;
+    display: inline-block;
+    padding: 15px 44px;
+    border: 1px solid #FFC700;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFC700;
+    transition: 0.3s;
+}
+
+.navlinkBtn:hover {
+    background-color: #111111;
+    transition: 0.3s;
+}
+.navlinkBtn:active {
+    background-color: #313131;
 
 }

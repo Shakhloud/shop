@@ -1,9 +1,18 @@
-export const rangeLengthValidator = (minLength: number, maxLength: number) => (value: string) => {
+export const rangeStringLengthValidator = (minLength: number, maxLength: number) => (value: string) => {
     if (value.trim().length < minLength) {
         return `Значение поля не может быть меньше ${minLength}.`;
     }
     if (value.trim().length > maxLength) {
         return `Значение поля не может быть больше ${maxLength}.`;
+    }
+}
+
+export const rangeNumberValidator = (min: number, max: number) => (value: number) => {
+    if (value < min) {
+        return `Значение поля не может быть меньше ${min}`;
+    }
+    if (value > max) {
+        return `Значение поля не может быть больше ${max}`;
     }
 }
 
