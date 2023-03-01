@@ -36,6 +36,7 @@ type Store = {
 
 type ServerBasket = {
     items: Array<ServerBasketItem>;
+    totalCost: number | null;
 }
 
 export type AuthResponse = {
@@ -147,7 +148,8 @@ class Server {
                     count: item.count,
                     commonCost: item.commonCost,
                 }
-            })
+            }),
+            totalCost: serverBasket.totalCost,
         }
     }
 
@@ -171,14 +173,17 @@ class Server {
         switch (login) {
             case 'admin' : {
                 this.addBasketItemForUser(productId, this.store.adminBasket);
+                this.calcTotalCostOfBasket(this.store.adminBasket);
                 break;
             }
             case 'user1' : {
                 this.addBasketItemForUser(productId, this.store.user1Basket);
+                this.calcTotalCostOfBasket(this.store.user1Basket);
                 break;
             }
             case 'user2': {
                 this.addBasketItemForUser(productId, this.store.user2Basket);
+                this.calcTotalCostOfBasket(this.store.user2Basket);
                 break;
             }
         }
@@ -269,20 +274,46 @@ class Server {
             case 'admin' : {
                 const currentItem = this.store.adminBasket?.items.filter(item => item.productId === productId)[0];
                 currentItem.commonCost = commonCost;
+                this.calcTotalCostOfBasket(this.store.adminBasket);
                 break;
             }
             case 'user1' : {
                 const currentItem = this.store.user1Basket?.items.filter(item => item.productId === productId)[0];
                 currentItem.commonCost = commonCost;
+                this.calcTotalCostOfBasket(this.store.user1Basket);
                 break;
             }
             case 'user2': {
                 const currentItem = this.store.user2Basket?.items.filter(item => item.productId === productId)[0];
                 currentItem.commonCost = commonCost;
+                this.calcTotalCostOfBasket(this.store.user2Basket);
                 break;
             }
         }
     }
+    public calcTotalCostOfBasket (basket: ServerBasket) {
+        const resultCost = basket.items.reduce((sum, current) => sum + current.commonCost, 0)
+        basket.totalCost = resultCost;
+    }
+    /*public calcCommonCostOfBasket(login: string) {
+        switch (login) {
+            case 'admin' : {
+                const resultCost = this.store.adminBasket.items.reduce((sum, current) => sum + current.commonCost, 0)
+                this.store.adminBasket.totalCost = resultCost;
+                break;
+            }
+            case 'user1' : {
+                const resultCost = this.store.user1Basket.items.reduce((sum, current) => sum + current.commonCost, 0)
+                this.store.user1Basket.totalCost = resultCost;
+                break;
+            }
+            case 'user2': {
+                const resultCost = this.store.user2Basket.items.reduce((sum, current) => sum + current.commonCost, 0)
+                this.store.user2Basket.totalCost = resultCost;
+                break;
+            }
+        }
+    }*/
 }
 
 
@@ -618,7 +649,8 @@ const createStore: () => Store = () => {
                         count: 3,
                         commonCost: 9000,
                     }
-                ]
+                ],
+            totalCost: 9000,
         },
         user1Basket: {
             items:
@@ -630,7 +662,8 @@ const createStore: () => Store = () => {
                         count: 3,
                         commonCost: 15000,
                     }
-                ]
+                ],
+            totalCost: 15000,
         },
         user2Basket: {
             items:
@@ -642,7 +675,8 @@ const createStore: () => Store = () => {
                         count: 3,
                         commonCost: 3000,
                     }
-                ]
+                ],
+            totalCost: 3000,
         }
     }
 }

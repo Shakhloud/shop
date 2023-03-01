@@ -43,7 +43,9 @@ const BasketContent = observer((props: any) => {
                         }
                 </div>
                 <div>
-                    <BasketOrder />
+                    <BasketOrder
+                            totalCost = {basketService.basket?.totalCost}
+                    />
                 </div>
             </div>
         )

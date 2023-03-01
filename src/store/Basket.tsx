@@ -18,6 +18,7 @@ export type FrontendBasketItem = {
 }
 export type FrontendBasket = {
     items: Array<FrontendBasketItem>;
+    totalCost: number|null;
 }
 
 class BasketService {
