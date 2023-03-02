@@ -6,7 +6,7 @@ import PageSlider from "../page_slider/PageSlider";
 import {Select, Input, Slider} from 'antd';
 import {server} from "./../../../store/Server";
 import {authService} from "../../../store/Auth";
-import { basketService } from '../../../store/Basket';
+import {basketService} from '../../../store/Basket';
 
 const ProductPagination = (props: any) => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -29,13 +29,12 @@ const ProductPagination = (props: any) => {
         setItemsOnOnePage(Number(e.value));
     };
 
-    const filterModeHandler = (e: any) => {
-        setFilterMode(Number(e.value));
-        if (e.value !== 1) {
+    const filterModeHandler = (e:any) => {
+        setFilterMode(Number(e));
+        if (Number(e) !== 1) {
             setFilterItemName('');
         }
-        if (e.value === '0') {
-            console.log(e);
+        if (Number(e) !== 2) {
             setFilterCurrentMaxValue(20000);
             setFilterCurrentMinValue(0);
         }
@@ -60,13 +59,12 @@ const ProductPagination = (props: any) => {
                 Фильтр :
                 <div className={classes.filter__form}>
                     <Select
-                        dropdownClassName={classes.filter__formDropdown}
+                        popupClassName={classes.filter__formDropdown}
                         style={{
                             color: '#FFC700',
                             width: 220,
                         }}
-                        labelInValue
-                        defaultValue={{value: '0', label: 'Выберите режим фильтра'}}
+                        defaultValue={{value: 'Выберите режим фильтра', label: 'Выберите режим фильтра'}}
                         onChange={filterModeHandler}
 
                         options={[
@@ -103,9 +101,8 @@ const ProductPagination = (props: any) => {
             <div className={classes.pageNumber}>
                 На странице:
                 <Select
-                    dropdownClassName={classes.filter__formDropdown}
+                    popupClassName={classes.filter__formDropdown}
                     className={classes.pageNumber__select}
-                    labelInValue
                     defaultValue={{value: '8', label: '8'}}
                     onChange={itemsOnOnePageHandler}
                     options={[
@@ -127,7 +124,8 @@ const ProductPagination = (props: any) => {
         </div>
         <div className={classes.container}>
             {currentProducts.map((product) => <div key={product.id} className={classes.productItem}><ProductItemContent
-                updateBasket = {basketService.update.bind(basketService)}
+                imageStyle={'imageStylePagination'}
+                updateBasket={basketService.update.bind(basketService)}
                 productId={product.id}
                 login={authService.getLogin()}
                 addItem={server.addBasketItem.bind(server)}

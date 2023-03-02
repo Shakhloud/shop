@@ -43,7 +43,7 @@ const AdminPanel = () => {
                                             {errors.title}
                                         </div>
                                     }
-                                    <Field className={classes.textForm} validate={rangeStringLengthValidator(2, 300)}
+                                    <Field className={classes.textForm} validate={rangeStringLengthValidator(2, 500)}
                                            id="image" name="image"
                                            placeholder="Введите url картинки товара"/>
                                     {touched.image && errors.image &&
@@ -130,6 +130,7 @@ const AdminPanel = () => {
                         }}
                         onSubmit={(values) => {
                             server.deleteProductFromCatalog(Number(values.productId));
+                            basketService.update();
                             alert('Товар успешно удален.');
                         }}
                     >

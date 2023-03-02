@@ -58,7 +58,7 @@ const BasketContentItem = (props: any) => {
             <img className={classes.image} src={props.image} alt="Фотография товара."/>
             <span className={classes.title}>{props.title}</span>
             <Select
-                dropdownClassName={classes.formDropdown}
+                popupClassName={classes.formDropdown}
                 className={classes.size}
                 onChange={sizeHandler}
                 value={props.size}
@@ -82,7 +82,7 @@ const BasketContentItem = (props: any) => {
                 ]}
             />
             <Select
-                dropdownClassName={classes.formDropdown}
+                popupClassName={classes.formDropdown}
                 className={classes.color}
                 value={props.color}
                 onChange={colorHandler}

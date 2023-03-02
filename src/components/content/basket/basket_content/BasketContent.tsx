@@ -41,8 +41,7 @@ const BasketContent = observer((props: any) => {
                 }
                 <div className={classes.basketItemContent}>
                     {
-                        basket?.items.map(item => <div className={classes.item}><BasketContentItem
-                            key={item.product.id}
+                        basket?.items.map(item => <div key={item.product.id} className={classes.item}><BasketContentItem
                             product={item.product}
                             id={item.product.id}
                             image={item.product.image}

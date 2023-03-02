@@ -10,7 +10,7 @@ const ProductItemContent = (props: any) => {
 
     return (
         <div className={classes.container}>
-            <div className={classes.image}>
+            <div className={props.imageStyle + ' ' + classes.image}>
                 <div className={classes.bgImg}></div>
                 <div className={classes.image__btns}>
                     <button onClick={addItemHandler} className={classes.btnItem}>Добавить в корзину</button>

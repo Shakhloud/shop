@@ -1,6 +1,4 @@
 .container {
-    max-width: 229px;
-    max-height: 325px;
     color: white;
     text-align: center;
 }
@@ -35,7 +33,6 @@
 
 .image {
     position: relative;
-    max-height: 290px;
     object-position: bottom;
     border-radius: 30px;
     overflow: hidden;

@@ -312,9 +312,17 @@ class Server {
         this.store.allProducts.push(newProduct);
     }
 
+    public deleteProductByIndex (basket:ServerBasket, productId:number) {
+        const deleteIndex = basket.items.map(item => item.productId).indexOf(productId);
+        basket.items.splice(deleteIndex, 1);
+    }
+
     public deleteProductFromCatalog(productId: number) {
         const deleteIndexPagination = this.store.paginationProducts.map(item => item.id).indexOf(productId);
         const deleteIndexAllProducts = this.store.allProducts.map(item => item.id).indexOf(productId);
+        this.deleteProductByIndex(this.store.adminBasket, productId);
+        this.deleteProductByIndex(this.store.user1Basket, productId);
+        this.deleteProductByIndex(this.store.user2Basket, productId);
         this.store.paginationProducts.splice(deleteIndexPagination, 1);
         this.store.allProducts.splice(deleteIndexAllProducts, 1);
     }

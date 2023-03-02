@@ -74,7 +74,7 @@ const BasketOrder = (props: any) => {
                                         <div className={classes.radio__title}>Доставка</div>
                                         <div className={classes.radioBtn}>
                                             <input className={classes.radio__btn} type="radio" id="delivery1"
-                                                   name="deliveries" value="самовывоз" checked/>
+                                                   name="deliveries" value="самовывоз" defaultChecked/>
                                             <label className={classes.radio__label} htmlFor="delivery1">Самовывоз</label>
                                         </div>
                                         <div className={classes.radioBtn}>
@@ -94,7 +94,7 @@ const BasketOrder = (props: any) => {
                                         </div>
                                         <div className={classes.radioBtn}>
                                             <input className={classes.radio__btn} type="radio" id="payment2"
-                                                   name="payments" value="безналичный" checked/>
+                                                   name="payments" value="безналичный" defaultChecked/>
                                             <label className={classes.radio__label}
                                                    htmlFor="payment2">Безналичный</label>
                                         </div>
