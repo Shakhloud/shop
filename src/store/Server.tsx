@@ -315,6 +315,7 @@ class Server {
     public deleteProductByIndex (basket:ServerBasket, productId:number) {
         const deleteIndex = basket.items.map(item => item.productId).indexOf(productId);
         basket.items.splice(deleteIndex, 1);
+        this.calcTotalCostOfBasket(basket);
     }
 
     public deleteProductFromCatalog(productId: number) {
