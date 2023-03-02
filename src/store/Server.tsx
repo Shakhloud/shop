@@ -1,7 +1,7 @@
 import promo1 from "./../img/content/promo_slider/promo1.png";
 import Auth from "../components/auth/Auth";
 import FrontendBasketContent from "../components/content/basket/basket_content/BasketContent";
-import {Color, FrontendBasket, FrontendBasketItem, Size} from "./Basket";
+import {basketService, Color, FrontendBasket, FrontendBasketItem, Size} from "./Basket";
 
 export type Product = {
     id: number,
@@ -320,6 +320,7 @@ class Server {
     }
 
     public changeProductFromCatalog(productId: number, title: string | null, image: string | null, desc: string | null, cost: number | null) {
+        debugger
         if (this.store.allProducts.filter(item => item.id === productId).length !== 0) {
             const changeProductAllProduct = this.store.allProducts.filter(item => item.id === productId)[0];
             if (title) changeProductAllProduct.title = title;
