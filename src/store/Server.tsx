@@ -27,11 +27,13 @@ type PageResponse = {
 type Store = {
     sliderProducts: Array<Product>,
     paginationProducts: Array<Product>,
-
     allProducts: Array<Product>,
     adminBasket: ServerBasket,
     user1Basket: ServerBasket,
     user2Basket: ServerBasket,
+    shopReviews: ShopReviews,
+    productsReviews: ProductsReviews,
+
 };
 
 type ServerBasket = {
@@ -43,6 +45,26 @@ export type AuthResponse = {
     isAuth: boolean,
     login: string | null,
     role: 'admin' | 'user' | null,
+}
+
+export type Review = {
+    avatar: string;
+    name: string;
+    content: string;
+    rating: 1 | 2 | 3 | 4 | 5;
+}
+
+export type ShopReviews = {
+    reviews: Array<Review>
+}
+
+export type ProductReviews = {
+    productId: number,
+    reviews: Array<Review>,
+}
+
+export type ProductsReviews = {
+    reviews: Array<ProductReviews>,
 }
 
 class Server {
@@ -297,7 +319,7 @@ class Server {
 
     public calcTotalCostOfBasket(basket: ServerBasket) {
         const resultCost = basket.items.reduce((sum, current) => sum + current.commonCost, 0)
-            basket.totalCost = resultCost;
+        basket.totalCost = resultCost;
     }
 
     public addNewProductToCatalog(image: string, title: string, desc: string | null, cost: number,) {
@@ -312,7 +334,7 @@ class Server {
         this.store.allProducts.push(newProduct);
     }
 
-    public deleteProductByIndex (basket:ServerBasket, productId:number) {
+    public deleteProductByIndex(basket: ServerBasket, productId: number) {
         const deleteIndex = basket.items.map(item => item.productId).indexOf(productId);
         basket.items.splice(deleteIndex, 1);
         this.calcTotalCostOfBasket(basket);
@@ -329,7 +351,6 @@ class Server {
     }
 
     public changeProductFromCatalog(productId: number, title: string | null, image: string | null, desc: string | null, cost: number | null) {
-        debugger
         if (this.store.allProducts.filter(item => item.id === productId).length !== 0) {
             const changeProductAllProduct = this.store.allProducts.filter(item => item.id === productId)[0];
             if (title) changeProductAllProduct.title = title;
@@ -344,7 +365,20 @@ class Server {
             if (desc) changeProductPagination.desc = desc;
             if (cost) changeProductPagination.cost = cost;
         }
+    }
 
+    public getProductReviews(productId:number):ProductReviews {
+        const filterProductReviews = this.store.productsReviews.reviews.filter(item => item.productId === productId);
+        if (filterProductReviews) {
+            return {
+                productId: filterProductReviews[0].productId,
+                reviews: filterProductReviews[0].reviews,
+            }
+        }
+        return {
+            productId: productId,
+            reviews: [],
+        }
     }
 }
 
@@ -709,6 +743,102 @@ const createStore: () => Store = () => {
                     }
                 ],
             totalCost: 3000,
+        },
+        shopReviews: {
+            reviews: [
+                {
+                    avatar: 'https://thumbs.dreamstime.com/b/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BA%D1%83%D1%80%D0%BE%D0%B3%D0%BE-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-211377060.jpg',
+                    name: 'Марат',
+                    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor aenean enim, bibendum sed massa tellus in. In ultrices et egestas faucibus vestibulum in. Eget nunc leo, in pellentesque. Sed habitant a lectus velit neque. Sed in accumsan in dictum ac.',
+                    rating: 5,
+                },
+                {
+                    avatar: 'https://thumbs.dreamstime.com/b/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BA%D1%83%D1%80%D0%BE%D0%B3%D0%BE-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-211377060.jpg',
+                    name: 'Даниил',
+                    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor aenean enim, bibendum sed massa tellus in. In ultrices et egestas faucibus vestibulum in. Eget nunc leo, in pellentesque. Sed habitant a lectus velit neque. Sed in accumsan in dictum ac.',
+                    rating: 4,
+                },
+                {
+                    avatar: 'https://thumbs.dreamstime.com/b/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BA%D1%83%D1%80%D0%BE%D0%B3%D0%BE-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-211377060.jpg',
+                    name: 'Алексей',
+                    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor aenean enim, bibendum sed massa tellus in. In ultrices et egestas faucibus vestibulum in. Eget nunc leo, in pellentesque. Sed habitant a lectus velit neque. Sed in accumsan in dictum ac.',
+                    rating: 3,
+                },
+                {
+                    avatar: 'https://thumbs.dreamstime.com/b/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BA%D1%83%D1%80%D0%BE%D0%B3%D0%BE-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-211377060.jpg',
+                    name: 'Валера',
+                    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor aenean enim, bibendum sed massa tellus in. In ultrices et egestas faucibus vestibulum in. Eget nunc leo, in pellentesque. Sed habitant a lectus velit neque. Sed in accumsan in dictum ac.',
+                    rating: 2,
+                },
+                {
+                    avatar: 'https://thumbs.dreamstime.com/b/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BA%D1%83%D1%80%D0%BE%D0%B3%D0%BE-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-211377060.jpg',
+                    name: 'Артемий',
+                    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor aenean enim, bibendum sed massa tellus in. In ultrices et egestas faucibus vestibulum in. Eget nunc leo, in pellentesque. Sed habitant a lectus velit neque. Sed in accumsan in dictum ac.',
+                    rating: 1,
+                },
+            ]
+        },
+        productsReviews : {
+            reviews: [
+                {
+                    productId: 0,
+                    reviews: [
+                        {
+                            avatar: 'https://thumbs.dreamstime.com/b/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BA%D1%83%D1%80%D0%BE%D0%B3%D0%BE-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-211377060.jpg',
+                            name: 'Артемий',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor aenean enim, bibendum sed massa tellus in. In ultrices et egestas faucibus vestibulum in. Eget nunc leo, in pellentesque. Sed habitant a lectus velit neque. Sed in accumsan in dictum ac.',
+                            rating: 1,
+                        },
+                        {
+                            avatar: 'https://thumbs.dreamstime.com/b/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BA%D1%83%D1%80%D0%BE%D0%B3%D0%BE-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-211377060.jpg',
+                            name: 'Артемий',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor aenean enim, bibendum sed massa tellus in. In ultrices et egestas faucibus vestibulum in. Eget nunc leo, in pellentesque. Sed habitant a lectus velit neque. Sed in accumsan in dictum ac.',
+                            rating: 3,
+                        },
+                        {
+                            avatar: 'https://thumbs.dreamstime.com/b/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BA%D1%83%D1%80%D0%BE%D0%B3%D0%BE-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-211377060.jpg',
+                            name: 'Артемий',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor aenean enim, bibendum sed massa tellus in. In ultrices et egestas faucibus vestibulum in. Eget nunc leo, in pellentesque. Sed habitant a lectus velit neque. Sed in accumsan in dictum ac.',
+                            rating: 5,
+                        },
+                        {
+                            avatar: 'https://thumbs.dreamstime.com/b/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BA%D1%83%D1%80%D0%BE%D0%B3%D0%BE-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-211377060.jpg',
+                            name: 'Артемий',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor aenean enim, bibendum sed massa tellus in. In ultrices et egestas faucibus vestibulum in. Eget nunc leo, in pellentesque. Sed habitant a lectus velit neque. Sed in accumsan in dictum ac.',
+                            rating: 2,
+                        },
+                    ]
+                },
+                {
+                    productId: 2,
+                    reviews: [
+                        {
+                            avatar: 'https://thumbs.dreamstime.com/b/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BA%D1%83%D1%80%D0%BE%D0%B3%D0%BE-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-211377060.jpg',
+                            name: 'Артемий',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor aenean enim, bibendum sed massa tellus in. In ultrices et egestas faucibus vestibulum in. Eget nunc leo, in pellentesque. Sed habitant a lectus velit neque. Sed in accumsan in dictum ac.',
+                            rating: 4,
+                        },
+                        {
+                            avatar: 'https://thumbs.dreamstime.com/b/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BA%D1%83%D1%80%D0%BE%D0%B3%D0%BE-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-211377060.jpg',
+                            name: 'Артемий',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor aenean enim, bibendum sed massa tellus in. In ultrices et egestas faucibus vestibulum in. Eget nunc leo, in pellentesque. Sed habitant a lectus velit neque. Sed in accumsan in dictum ac.',
+                            rating: 2,
+                        },
+                        {
+                            avatar: 'https://thumbs.dreamstime.com/b/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BA%D1%83%D1%80%D0%BE%D0%B3%D0%BE-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-211377060.jpg',
+                            name: 'Артемий',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor aenean enim, bibendum sed massa tellus in. In ultrices et egestas faucibus vestibulum in. Eget nunc leo, in pellentesque. Sed habitant a lectus velit neque. Sed in accumsan in dictum ac.',
+                            rating: 5,
+                        },
+                        {
+                            avatar: 'https://thumbs.dreamstime.com/b/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BA%D1%83%D1%80%D0%BE%D0%B3%D0%BE-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-211377060.jpg',
+                            name: 'Артемий',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor aenean enim, bibendum sed massa tellus in. In ultrices et egestas faucibus vestibulum in. Eget nunc leo, in pellentesque. Sed habitant a lectus velit neque. Sed in accumsan in dictum ac.',
+                            rating: 1,
+                        },
+                    ]
+                },
+            ]
         }
     }
 }
