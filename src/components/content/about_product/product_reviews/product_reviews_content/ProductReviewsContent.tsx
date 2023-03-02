@@ -5,7 +5,7 @@ import classes from "./ProductReviewsContent.module.css";
 const ProductReviewsContent = (props:any) => {
     return (
         <div className={classes.container}>
-
+            HELLO WORLD!
         </div>
     )
 }

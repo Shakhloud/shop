@@ -369,7 +369,8 @@ class Server {
 
     public getProductReviews(productId:number):ProductReviews {
         const filterProductReviews = this.store.productsReviews.reviews.filter(item => item.productId === productId);
-        if (filterProductReviews) {
+        debugger
+        if (filterProductReviews.length === 1) {
             return {
                 productId: filterProductReviews[0].productId,
                 reviews: filterProductReviews[0].reviews,
