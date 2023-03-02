@@ -2,6 +2,7 @@ import React from 'react';
 import classes from "./BasketOrder.module.css";
 import {Formik, Form, Field} from "formik";
 import {emailValidator, rangeStringLengthValidator, telephoneValidator} from '../../../../../utils/FormikValidators';
+import { basketService } from '../../../../../store/Basket';
 
 const BasketOrder = (props: any) => {
     const deliveryCost = 50;
@@ -19,7 +20,7 @@ const BasketOrder = (props: any) => {
                     city: '',
                     department: '',
                 }}
-                onSubmit={(values) => alert('Ваш заказ оформлен.')}
+                onSubmit={(values) => (basketService.getBasket()?.items.length === 0) ? alert('К сожалению ваша корзина пуста. Пожалуйста воспользуйтесь каталогом для поиска подходящих товаров.') : alert('Ваш заказ успешно оформлен.')}
             >
                 {({errors, touched}) => (
                     <Form>
@@ -69,40 +70,40 @@ const BasketOrder = (props: any) => {
                             </div>
                             <div className={classes.otherInfo}>
                                 <div className={classes.radio}>
-                                    <div>
+                                    <div className={classes.radio_block}>
                                         <div className={classes.radio__title}>Доставка</div>
                                         <div className={classes.radioBtn}>
-                                            <input className={classes.radio__btn} type="radio" id="delivery"
-                                                   name="delivery" value="самовывоз"/>
-                                            <label className={classes.radio__label} htmlFor="delivery">Самовывоз</label>
+                                            <input className={classes.radio__btn} type="radio" id="delivery1"
+                                                   name="deliveries" value="самовывоз" checked/>
+                                            <label className={classes.radio__label} htmlFor="delivery1">Самовывоз</label>
                                         </div>
                                         <div className={classes.radioBtn}>
-                                            <input className={classes.radio__btn} type="radio" id="delivery"
-                                                   name="delivery" value="новая почта"/>
-                                            <label className={classes.radio__label} htmlFor="delivery">Новая
+                                            <input className={classes.radio__btn} type="radio" id="delivery2"
+                                                   name="deliveries" value="новая почта"/>
+                                            <label className={classes.radio__label} htmlFor="delivery2">Новая
                                                 почта</label>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div className={classes.radio_block}>
                                         <div className={classes.radio__title}>Оплата</div>
                                         <div className={classes.radioBtn}>
-                                            <input className={classes.radio__btn} type="radio" id="payment"
-                                                   name="payment" value="наложеный платёж"/>
-                                            <label className={classes.radio__label} htmlFor="payment">Наложеный
+                                            <input className={classes.radio__btn} type="radio" id="payment1"
+                                                   name="payments" value="наложеный платёж"/>
+                                            <label className={classes.radio__label} htmlFor="payment1">Наложеный
                                                 платёж</label>
                                         </div>
                                         <div className={classes.radioBtn}>
-                                            <input className={classes.radio__btn} type="radio" id="payment"
-                                                   name="payment" value="безналичный"/>
+                                            <input className={classes.radio__btn} type="radio" id="payment2"
+                                                   name="payments" value="безналичный" checked/>
                                             <label className={classes.radio__label}
-                                                   htmlFor="payment">Безналичный</label>
+                                                   htmlFor="payment2">Безналичный</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div className={classes.otherInfo__totalCost}>
+                                <div className={classes.otherInfo__resultCostBlock}>
                                     Заказ: <span>{props.totalCost} $</span>
                                 </div>
-                                <div className={classes.otherInfo__delivery}>Доставка: <span>{deliveryCost} $</span>
+                                <div className={classes.otherInfo__resultCostBlock}>Доставка: <span>{deliveryCost} $</span>
                                 </div>
                                 <div className={classes.resultCost}>Итого: <span>{resultCost} $</span></div>
                                 <button type="submit" className={classes.submit__btn}>Оформить заказ</button>

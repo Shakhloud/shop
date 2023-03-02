@@ -55,7 +55,7 @@ const BasketContentItem = (props: any) => {
 
     return (
         <div className={classes.container}>
-            <img src={props.image} alt="Фотография товара."/>
+            <img className={classes.image} src={props.image} alt="Фотография товара."/>
             <span className={classes.title}>{props.title}</span>
             <Select
                 dropdownClassName={classes.formDropdown}

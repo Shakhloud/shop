@@ -9,10 +9,10 @@
     justify-content: space-between;
 }
 
-.container img {
-    max-width: 164px;
+.image {
+    width: 140px;
     border-radius: 30px;
-    max-height: 164px;
+    height: 164px;
 }
 
 .title {
@@ -22,7 +22,7 @@
 }
 
 .size {
-    max-width: 66px;
+    width: 66px;
     margin: 0 auto;
 }
 
