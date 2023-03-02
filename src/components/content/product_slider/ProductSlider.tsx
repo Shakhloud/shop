@@ -32,6 +32,7 @@ const ProductSlider = (props: any) => {
                 <img src={arrowLeft} alt="Стрелка влево"/>
             </button>
             <ProductItemContent
+                imageStyle={'imageStyleSlider'}
                 addItem={server.addBasketItem.bind(server)}
                 updateBasket={basketService.update.bind(basketService)}
                 login={authService.getLogin()}

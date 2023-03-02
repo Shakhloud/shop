@@ -34,3 +34,6 @@
     width: 229px;
     height: 325px;
 }
+.imageStyleSlider {
+    max-width: 500px;
+}

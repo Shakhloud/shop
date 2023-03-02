@@ -1,23 +1,22 @@
 .btn {
-    border-radius: 10px;
-    padding: 15px;
-    background-color: #504F51;
+    padding: 15px 15px ;
+    border-radius: 15px;
+    background-color: black;
     border: none;
     cursor: pointer;
     transition: 0.5s;
-}
-
-.btn img {
-    max-width: 30px;
+    max-width: 50px;
+    justify-self: center;
 }
 
 .btn:active {
-    background-color: #2a2a2a;
+    background-color: #444444;
     transition: 0.5s;
 }
 
 .fcontainer {
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
     justify-content: space-between;
     align-items: center;
 }

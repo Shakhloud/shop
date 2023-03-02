@@ -26,7 +26,7 @@ const ProductPagination = (props: any) => {
 
     const itemsOnOnePageHandler = (e: any) => {
         setCurrentPage(1);
-        setItemsOnOnePage(Number(e.value));
+        setItemsOnOnePage(Number(e));
     };
 
     const filterModeHandler = (e:any) => {
