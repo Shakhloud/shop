@@ -7,6 +7,12 @@
     font-size: 36px;
     text-align: center;
 }
+.panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
 .functions {
     margin-top: 60px;
@@ -50,7 +56,7 @@
 }
 
 .error {
-    width: 273px;
+    width: 330px;
     text-align: center;
     color: red;
     font-size: 14px;
@@ -59,7 +65,6 @@
 }
 
 .submit__btn {
-
     font-family: 'Inter';
     display: inline-block;
     max-width: 220px;

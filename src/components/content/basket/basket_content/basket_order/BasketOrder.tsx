@@ -27,7 +27,7 @@ const BasketOrder = (props: any) => {
                         <div className={classes.content}>
                             <div className={classes.forms}>
 
-                                <Field className={classes.textForm} validate={rangeStringLengthValidator(2, 10)}
+                                <Field className={classes.textForm} validate={rangeStringLengthValidator(2, 10,true)}
                                        id="name" name="name"
                                        placeholder="Ваше имя"/>
                                 {touched.name && errors.name &&

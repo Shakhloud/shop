@@ -30,6 +30,7 @@ const ProductReviewsComponent = (props: any) => {
                         onSubmit={(values) => {
                             server.addNewReview(Number(props.productId), values.content, Number(values.rating));
                             props.setReviews(server.getProductReviews(Number(props.productId)));
+                            setModalWindowReview(false);
                             alert('Ваш отзыв успешно оставлен.');
                         }}
                     >
@@ -42,7 +43,7 @@ const ProductReviewsComponent = (props: any) => {
                                         <div className={classes.modal__title}>Оставить отзыв</div>
                                         <Field as="textarea"
                                                className={classes.modal__textForm + ' ' + classes.modal__textForm_textarea}
-                                               validate={rangeStringLengthValidator(5, 200)}
+                                               validate={rangeStringLengthValidator(5, 200,true)}
                                                id="content" name="content"
                                                placeholder="Введите текст отзыва."
                                         />

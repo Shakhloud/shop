@@ -3,6 +3,7 @@ import Auth from "../components/auth/Auth";
 import FrontendBasketContent from "../components/content/basket/basket_content/BasketContent";
 import {basketService, Color, FrontendBasket, FrontendBasketItem, Size} from "./Basket";
 import {authService} from "./Auth";
+import {Debugger} from "inspector";
 
 export type Product = {
     id: number,
@@ -342,17 +343,22 @@ class Server {
         this.calcTotalCostOfBasket(basket);
     }
 
-    public deleteProductFromCatalog(productId: number) {
+    public deleteProductFromCatalog(productId: number):string {
         const deleteIndexPagination = this.store.paginationProducts.map(item => item.id).indexOf(productId);
+        if (deleteIndexPagination === -1) {
+            return 'Такого id не существует';
+        }
+        debugger
         const deleteIndexAllProducts = this.store.allProducts.map(item => item.id).indexOf(productId);
         this.deleteProductByIndex(this.store.adminBasket, productId);
         this.deleteProductByIndex(this.store.user1Basket, productId);
         this.deleteProductByIndex(this.store.user2Basket, productId);
         this.store.paginationProducts.splice(deleteIndexPagination, 1);
         this.store.allProducts.splice(deleteIndexAllProducts, 1);
+        return 'Товар успешно удален.';
     }
 
-    public changeProductFromCatalog(productId: number, title: string | null, image: string | null, desc: string | null, cost: number | null) {
+    public changeProductFromCatalog(productId: number, title: string | null, image: string | null, desc: string | null, cost: number | null):string {
         if (this.store.allProducts.filter(item => item.id === productId).length !== 0) {
             const changeProductAllProduct = this.store.allProducts.filter(item => item.id === productId)[0];
             if (title) changeProductAllProduct.title = title;
@@ -366,7 +372,9 @@ class Server {
             if (image) changeProductPagination.image = image;
             if (desc) changeProductPagination.desc = desc;
             if (cost) changeProductPagination.cost = cost;
+            return 'Товар успешно обновлен.';
         }
+        return 'Такого id не существует.';
     }
 
     public getProductReviews(productId: number): ProductReviews {

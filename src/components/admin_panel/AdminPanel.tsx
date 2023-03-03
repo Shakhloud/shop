@@ -6,7 +6,8 @@ import {
     emailValidator,
     rangeNumberValidator,
     rangeStringLengthValidator,
-    telephoneValidator
+    telephoneValidator,
+    urlValidator
 } from "../../utils/FormikValidators";
 import {basketService} from "../../store/Basket";
 
@@ -35,7 +36,7 @@ const AdminPanel = () => {
                         {({errors, touched}) => (
                             <Form>
                                 <div className={classes.forms}>
-                                    <Field className={classes.textForm} validate={rangeStringLengthValidator(2, 20)}
+                                    <Field className={classes.textForm} validate={rangeStringLengthValidator(2, 20,true)}
                                            id="title" name="title"
                                            placeholder="Введите название товара"/>
                                     {touched.title && errors.title &&
@@ -43,7 +44,7 @@ const AdminPanel = () => {
                                             {errors.title}
                                         </div>
                                     }
-                                    <Field className={classes.textForm} validate={rangeStringLengthValidator(2, 500)}
+                                    <Field className={classes.textForm} validate={urlValidator(false)}
                                            id="image" name="image"
                                            placeholder="Введите url картинки товара"/>
                                     {touched.image && errors.image &&
@@ -51,7 +52,7 @@ const AdminPanel = () => {
                                             {errors.image}
                                         </div>
                                     }
-                                    <Field className={classes.textForm} validate={rangeStringLengthValidator(2, 20)}
+                                    <Field className={classes.textForm} validate={rangeStringLengthValidator(2, 20,true)}
                                            id="desc" name="desc"
                                            placeholder="Введите описание товара"/>
                                     {touched.desc && errors.desc &&
@@ -59,7 +60,7 @@ const AdminPanel = () => {
                                             {errors.desc}
                                         </div>
                                     }
-                                    <Field className={classes.textForm} validate={rangeNumberValidator(10, 20000)}
+                                    <Field className={classes.textForm} validate={rangeNumberValidator(10, 20000, true)}
                                            id="cost"
                                            name="cost" type='number'
                                            placeholder="Введите стоимость товара"/>
@@ -85,15 +86,20 @@ const AdminPanel = () => {
                             cost: '',
                         }}
                         onSubmit={(values) => {
-                            server.changeProductFromCatalog(Number(values.productId), values.title, values.image, values.desc, Number(values.cost));
+                            const answer = server.changeProductFromCatalog(Number(values.productId),
+                                values.title ? values.title : null,
+                                values.image ? values.image : null,
+                                values.desc ? values.desc : null,
+                                values.cost ? Number(values.cost) : null);
                             basketService.update();
-                            alert('Товар успешно обновлен.');
+                            alert(`${answer}`);
                         }}
                     >
                         {({errors, touched}) => (
                             <Form>
                                 <div className={classes.forms}>
                                     <Field className={classes.textForm} type="number"
+                                           validate={rangeNumberValidator(0, 20000, true)}
                                            id="productId" name="productId"
                                            placeholder="Введите ID товара"/>
                                     {touched.productId && errors.productId &&
@@ -103,18 +109,42 @@ const AdminPanel = () => {
                                     }
                                     <div className={classes.forms}>
                                         <Field className={classes.textForm}
+                                               validate={rangeStringLengthValidator(5, 20,false)}
                                                id="title" name="title"
                                                placeholder="Введите название товара"/>
+                                        {touched.title && errors.title &&
+                                            <div className={classes.error}>
+                                                {errors.title}
+                                            </div>
+                                        }
                                         <Field className={classes.textForm}
+                                               validate={urlValidator(true)}
                                                id="image" name="image"
                                                placeholder="Введите url картинки товара"/>
+                                        {touched.image && errors.image &&
+                                            <div className={classes.error}>
+                                                {errors.image}
+                                            </div>
+                                        }
                                         <Field className={classes.textForm}
+                                               validate={rangeStringLengthValidator(5, 20,false)}
                                                id="desc" name="desc"
                                                placeholder="Введите описание товара"/>
+                                        {touched.desc && errors.desc &&
+                                            <div className={classes.error}>
+                                                {errors.desc}
+                                            </div>
+                                        }
                                         <Field className={classes.textForm}
+                                               validate={rangeNumberValidator(10, 20000, false)}
                                                id="cost"
                                                name="cost" type='number'
                                                placeholder="Введите стоимость товара"/>
+                                        {touched.cost && errors.cost &&
+                                            <div className={classes.error}>
+                                                {errors.cost}
+                                            </div>
+                                        }
                                         <button className={classes.submit__btn} type="submit">Обновить товар</button>
                                     </div>
                                 </div>
@@ -129,15 +159,16 @@ const AdminPanel = () => {
                             productId: '',
                         }}
                         onSubmit={(values) => {
-                            server.deleteProductFromCatalog(Number(values.productId));
+                            const answer = server.deleteProductFromCatalog(Number(values.productId));
                             basketService.update();
-                            alert('Товар успешно удален.');
+                            alert(`${answer}`);
                         }}
                     >
                         {({errors, touched}) => (
                             <Form>
                                 <div className={classes.forms}>
                                     <Field className={classes.textForm} type="number"
+                                           validate={rangeNumberValidator(0, 20000, true)}
                                            id="productId" name="productId"
                                            placeholder="Введите ID товара"/>
                                     {touched.productId && errors.productId &&
