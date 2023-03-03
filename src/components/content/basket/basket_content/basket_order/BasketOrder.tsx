@@ -2,7 +2,7 @@ import React from 'react';
 import classes from "./BasketOrder.module.css";
 import {Formik, Form, Field} from "formik";
 import {emailValidator, rangeStringLengthValidator, telephoneValidator} from '../../../../../utils/FormikValidators';
-import { basketService } from '../../../../../store/Basket';
+import {basketService} from '../../../../../store/Basket';
 
 const BasketOrder = (props: any) => {
     const deliveryCost = 50;
@@ -75,7 +75,8 @@ const BasketOrder = (props: any) => {
                                         <div className={classes.radioBtn}>
                                             <input className={classes.radio__btn} type="radio" id="delivery1"
                                                    name="deliveries" value="самовывоз" defaultChecked/>
-                                            <label className={classes.radio__label} htmlFor="delivery1">Самовывоз</label>
+                                            <label className={classes.radio__label}
+                                                   htmlFor="delivery1">Самовывоз</label>
                                         </div>
                                         <div className={classes.radioBtn}>
                                             <input className={classes.radio__btn} type="radio" id="delivery2"
@@ -103,7 +104,8 @@ const BasketOrder = (props: any) => {
                                 <div className={classes.otherInfo__resultCostBlock}>
                                     Заказ: <span>{props.totalCost} $</span>
                                 </div>
-                                <div className={classes.otherInfo__resultCostBlock}>Доставка: <span>{deliveryCost} $</span>
+                                <div
+                                    className={classes.otherInfo__resultCostBlock}>Доставка: <span>{deliveryCost} $</span>
                                 </div>
                                 <div className={classes.resultCost}>Итого: <span>{resultCost} $</span></div>
                                 <button type="submit" className={classes.submit__btn}>Оформить заказ</button>

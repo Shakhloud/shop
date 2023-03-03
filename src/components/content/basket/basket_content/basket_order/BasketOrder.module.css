@@ -129,6 +129,7 @@
     font-weight: 600;
     font-size: 32px;
 }
+
 .resultCost span {
     font-weight: 500;
     font-size: 24px;
@@ -148,10 +149,12 @@
     background-color: black;
     transition: 0.3s;
 }
+
 .submit__btn:hover {
     background-color: #111111;
     transition: 0.3s;
 }
+
 .submit__btn:active {
     background-color: #504F51;
     transition: 0.3s;

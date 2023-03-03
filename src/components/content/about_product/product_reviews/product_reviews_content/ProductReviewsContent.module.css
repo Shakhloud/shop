@@ -3,7 +3,8 @@
     display: grid;
     grid-template-areas: 'avatar name'
                          'avatar rating'
-                         'avatar content'
+                         'avatar content';
+    justify-content: start;
 }
 .avatar {
     grid-area: avatar;

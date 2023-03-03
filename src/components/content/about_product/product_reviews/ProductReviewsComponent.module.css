@@ -20,18 +20,139 @@
     border: 1px solid #FFC700;
     transition: 0.3s;
 }
+
 .reviews__btn:hover {
     background-color: #212121;
     transition: 0.3s;
 }
+
 .reviews__btn:active {
     background-color: #4d4d4d;
     transition: 0.3s;
 }
+
 .review:not(:last-child) {
     margin-bottom: 60px;
 }
+
 .reviews {
     height: 620px;
     overflow: auto;
+}
+
+.modal__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+}
+
+.modal__content {
+    position: absolute;
+    text-align: center;
+    background-color: #111111;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: block;
+    width: 500px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.disable {
+    pointer-events: none;
+}
+
+.modal__title {
+    font-weight: 600;
+    font-size: 32px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.modal__textForm {
+    display: block;
+    max-width: 300px;
+    min-width: 300px;
+    background: #111111;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 12px;
+    color: #FFC700;
+    padding: 17px 25px 18px 25px;
+    margin: 0 auto;
+}
+
+.modal__textForm:not(:last-child) {
+    margin-top: 30px;
+}
+
+.modal__textForm_textarea {
+    height: 120px;
+    max-height: 130px;
+}
+
+.modal__textForm::placeholder {
+    font-family: 'Inter';
+    color: #FFC700;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.error {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 15px 0 -15px 0;
+}
+
+.submit__btn {
+    margin-top: 32px;
+    font-family: 'Inter';
+    display: inline-block;
+    max-width: 220px;
+    padding: 15px 43px;
+    color: #FFC700;
+    font-weight: 600;
+    font-size: 16px;
+    border: 1px solid #FFC700;
+    background-color: #111111;
+    transition: 0.3s;
+}
+
+.submit__btn:hover {
+    background-color: #181818;
+    transition: 0.3s;
+}
+
+.submit__btn:active {
+    background-color: #504F51;
+    transition: 0.3s;
+}
+
+.modal__close {
+    position: absolute;
+    top: 3%;
+    right: 2%;
+    background-color: #111111;
+    border: none;
+    cursor: pointer;
+}
+
+.modal__close img {
+    width: 15px;
+}
+
+.forms {
+    position: relative;
+    width: 100%;
+    padding: 35px 0 0 0;
 }

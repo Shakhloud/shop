@@ -2,6 +2,7 @@ import promo1 from "./../img/content/promo_slider/promo1.png";
 import Auth from "../components/auth/Auth";
 import FrontendBasketContent from "../components/content/basket/basket_content/BasketContent";
 import {basketService, Color, FrontendBasket, FrontendBasketItem, Size} from "./Basket";
+import {authService} from "./Auth";
 
 export type Product = {
     id: number,
@@ -49,10 +50,11 @@ export type AuthResponse = {
 
 export type Review = {
     avatar: string;
-    name: string;
+    name: string | null;
     content: string;
     rating: 1 | 2 | 3 | 4 | 5;
 }
+
 
 export type ShopReviews = {
     reviews: Array<Review>
@@ -367,7 +369,7 @@ class Server {
         }
     }
 
-    public getProductReviews(productId:number):ProductReviews {
+    public getProductReviews(productId: number): ProductReviews {
         const filterProductReviews = this.store.productsReviews.reviews.filter(item => item.productId === productId);
         if (filterProductReviews.length === 1) {
             return {
@@ -380,8 +382,36 @@ class Server {
             reviews: [],
         }
     }
-}
 
+    public addNewReview(productId: number, content: string, rating: number) {
+        debugger
+        const filterProductReview = this.store.productsReviews.reviews.filter(product => product.productId === productId)[0];
+        if ((rating === 1 || rating === 2 || rating === 3 || rating === 4 || rating === 5)) {
+            if (filterProductReview != undefined) {
+                const newReview: Review = {
+                    avatar: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/avatar-2-release-date-1649077307.png?crop=0.563xw:1.00xh;0.378xw,0&resize=1200:*',
+                    name: authService.getLogin(),
+                    content: content,
+                    rating: rating,
+                }
+                filterProductReview.reviews.push(newReview);
+            } else {
+                const newProductReviews: ProductReviews = {
+                    productId: productId,
+                    reviews: [
+                        {
+                            avatar: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/avatar-2-release-date-1649077307.png?crop=0.563xw:1.00xh;0.378xw,0&resize=1200:*',
+                            name: authService.getLogin(),
+                            content: content,
+                            rating: rating,
+                        }
+                    ]
+                }
+                this.store.productsReviews.reviews.push(newProductReviews);
+            }
+        }
+    }
+}
 
 const createStore: () => Store = () => {
     return {
@@ -778,7 +808,7 @@ const createStore: () => Store = () => {
                 },
             ]
         },
-        productsReviews : {
+        productsReviews: {
             reviews: [
                 {
                     productId: 0,
@@ -842,6 +872,7 @@ const createStore: () => Store = () => {
         }
     }
 }
-export const server = new Server();
+export const
+    server = new Server();
 // @ts-ignore
 window.server = server;
