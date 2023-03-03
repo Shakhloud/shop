@@ -5,9 +5,9 @@ import {authService} from "./../../../store/Auth"
 
 const Havbar = (props: any) => {
     return <div className={classes.navbar}>
-        <NavLink to="/services" className={classes.kategorie__link}>
+        <NavLink to="/" className={classes.kategorie__link}>
             <div className={classes.kategorie}>
-                <span className={classes.kategorie__span}>Наши услуги</span>
+                <span className={classes.kategorie__span}>Главная</span>
             </div>
         </NavLink>
         <NavLink to="/top_sell" className={classes.kategorie__link}>

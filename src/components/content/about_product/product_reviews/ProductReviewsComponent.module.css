@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+.title {
+    font-weight: 700;
+    font-size: 36px;
+    text-align: left;
+    color: #F0F0F0;
+    margin-bottom: 45px;
+}
+
+.reviews__btn {
+    cursor: pointer;
+    margin-left: 32px;
+    padding: 15px 20px;
+    background-color: black;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 16px;
+    color: #FFC700;
+    border: 1px solid #FFC700;
+    transition: 0.3s;
+}
+.reviews__btn:hover {
+    background-color: #212121;
+    transition: 0.3s;
+}
+.reviews__btn:active {
+    background-color: #4d4d4d;
+    transition: 0.3s;
+}
+.review:not(:last-child) {
+    margin-bottom: 60px;
+}
+.reviews {
+    height: 620px;
+    overflow: auto;
+}

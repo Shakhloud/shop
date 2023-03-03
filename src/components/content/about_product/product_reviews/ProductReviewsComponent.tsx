@@ -7,20 +7,18 @@ const ProductReviewsComponent = (props:any) => {
 
     return (
         <div className={classes.container}>
-            <div className={classes.container}>
                 <div className={classes.title}>
                     Отзывы
                     <button className={classes.reviews__btn}>Оставить отзыв</button>
                 </div>
-                <div>
-                    {props.reviews.map((item:Review)=> <ProductReviewsContent
+                <div className={classes.reviews}>
+                    {props.reviews.map((item:Review)=> <div className={classes.review}><ProductReviewsContent
                         image = {item.avatar}
                         name = {item.name}
                         content = {item.content}
                         rating = {item.rating}
-                    />)}
+                    /></div>)}
                 </div>
-            </div>
         </div>
     )
 }

@@ -7,8 +7,8 @@ import {useParams} from "react-router-dom";
 
 const AboutProduct = (props:any) => {
     const {id} = useParams();
+    console.log(id);
     const [reviews, setReviews] = useState<ProductReviews>(server.getProductReviews(Number(id)));
-    debugger
     return (
         <div className={classes.container}>
             <ProductReviewsComponent
@@ -18,4 +18,4 @@ const AboutProduct = (props:any) => {
         </div>
     )
 }
-export default AboutProduct;
+export {AboutProduct};

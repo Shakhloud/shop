@@ -1,0 +1,34 @@
+.container {
+    color: white;
+    display: grid;
+    grid-template-areas: 'avatar name'
+                         'avatar rating'
+                         'avatar content'
+}
+.avatar {
+    grid-area: avatar;
+}
+.avatar img {
+    width: 80px;
+    border-radius: 50%;
+
+}
+.name {
+    grid-area: name;
+    margin-left: 26px;
+    margin-bottom: 7px;
+    font-size: 24px;
+}
+.rating {
+    grid-area: rating;
+    margin-left: 26px;
+}
+.star:not(:last-child) {
+    margin-right: 10px;
+}
+.content {
+    grid-area: content;
+    margin: 32px 0px 0px 14px;
+    font-size: 20px;
+    color: #A5A5A5;
+}

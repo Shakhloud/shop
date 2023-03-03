@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import './App.css';
 import Header from "./components/header/Header";
-import Content from "./components/content/Content";
+import Main from "./components/content/Main";
 import Footer from "./components/footer/Footer";
 import {BrowserRouter, Route, Routes, useNavigate} from "react-router-dom";
 import Auth from "./components/auth/Auth";
@@ -30,9 +30,10 @@ const App = observer(() => {
                         <Auth/>
                     </div>
                 }
+
                 <div className={'main' + ' ' + (isAuth ? '' : 'disable')}>
                     <Header/>
-                    <Content/>
+                    <Main/>
                     <Footer/>
                 </div>
             </div>
