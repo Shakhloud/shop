@@ -8,6 +8,14 @@
     margin-bottom: 45px;
 }
 
+.notReviews {
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+    color: #F0F0F0;
+    margin-top: 45px;
+}
+
 .reviews__btn {
     cursor: pointer;
     margin-left: 32px;

@@ -79,6 +79,10 @@ const ProductReviewsComponent = (props: any) => {
                     <button onClick={addNewReviewHandler} className={classes.reviews__btn}>Оставить отзыв</button>
                 </div>
                 <div className={classes.reviews}>
+                    {props.reviews.length === 0 &&
+                    <div className={classes.notReviews}>
+                        К сожалению на данный момент на товар нет отзывов.
+                    </div>}
                     {props.reviews.map((item: Review, index: number) => <div key={index} className={classes.review}>
                         <ProductReviewsContent
 
