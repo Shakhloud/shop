@@ -10,6 +10,7 @@ import {AboutProduct} from "./about_product/AboutProduct";
 import NoPageFound from "./no_page_found/NoPageFound";
 import CallUs from './call_us/CallUs';
 import MainPage from './main/MainPage';
+import TopSell from "./top_sell/TopSell";
 
 
 
@@ -19,7 +20,7 @@ const Main = () => {
             <div className={classes.container}>
                 <Routes>
                     <Route path='/about_product/:id' element={<AboutProduct/>}/>
-                    <Route path='/top_sell' element={<ProductSlider products={server.getStore().sliderProducts}/>}/>
+                    <Route path='/top_sell' element={<TopSell />}/>
                     <Route path='/catalog' element={<ProductPagination getPageData={server.getPageData}/>}/>
                     <Route path='/admin_panel' element={<AdminPanel/>}/>
                     <Route path='/basket' element={<BasketContent/>}/>

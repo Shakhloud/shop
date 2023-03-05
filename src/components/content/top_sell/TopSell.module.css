@@ -1,0 +1,24 @@
+.container {
+    margin: 40px 0px 100px 0;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 72px;
+    text-align: center;
+    color: #F1F1F1;
+    margin-bottom: 95px;
+}
+
+.title_yellow {
+    color: #FFC700;
+}
+
+.title_under {
+    display: block;
+    font-weight: 300;
+    font-size: 32px;
+    text-align: center;
+    color: #949494;
+
+}

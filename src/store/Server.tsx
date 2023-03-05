@@ -470,12 +470,11 @@ const createStore: () => Store = () => {
             },
             {
                 id: 41,
-                image: 'https://www.machinescreenprinters.com.au/wp-content/uploads/2021/10/alstyle_1301_gold.jpg',
+                image: 'https://piterdm.ru/assets/cache/images/tshirts/black-tshirt-x-e25.png',
                 title: 'T-shirt #2',
                 desc: null,
                 cost: 13000,
-            },
-            {
+            },{
                 id: 42,
                 image: 'https://www.machinescreenprinters.com.au/wp-content/uploads/2021/10/alstyle_1301_gold.jpg',
                 title: 'T-shirt #3',
@@ -484,7 +483,7 @@ const createStore: () => Store = () => {
             },
             {
                 id: 43,
-                image: 'https://www.machinescreenprinters.com.au/wp-content/uploads/2021/10/alstyle_1301_gold.jpg',
+                image: 'https://piterdm.ru/assets/cache/images/tshirts/black-tshirt-x-e25.png',
                 title: 'T-shirt #4',
                 desc: null,
                 cost: 19000,
@@ -495,7 +494,49 @@ const createStore: () => Store = () => {
                 title: 'T-shirt #5',
                 desc: null,
                 cost: 11000,
-            }
+            },
+            {
+                id: 45,
+                image: 'https://piterdm.ru/assets/cache/images/tshirts/black-tshirt-x-e25.png',
+                title: 'T-shirt #6',
+                desc: null,
+                cost: 14000,
+            },
+            {
+                id: 46,
+                image: 'https://www.machinescreenprinters.com.au/wp-content/uploads/2021/10/alstyle_1301_gold.jpg',
+                title: 'T-shirt #7',
+                desc: null,
+                cost: 12000,
+            },
+            {
+                id: 47,
+                image: 'https://piterdm.ru/assets/cache/images/tshirts/black-tshirt-x-e25.png',
+                title: 'T-shirt #8',
+                desc: null,
+                cost: 19000,
+            },
+            {
+                id: 48,
+                image: 'https://www.machinescreenprinters.com.au/wp-content/uploads/2021/10/alstyle_1301_gold.jpg',
+                title: 'T-shirt #9',
+                desc: null,
+                cost: 5600,
+            },
+            {
+                id: 49,
+                image: 'https://piterdm.ru/assets/cache/images/tshirts/black-tshirt-x-e25.png',
+                title: 'T-shirt #10',
+                desc: null,
+                cost: 3100,
+            },
+            {
+                id: 50,
+                image: 'https://www.machinescreenprinters.com.au/wp-content/uploads/2021/10/alstyle_1301_gold.jpg',
+                title: 'T-shirt #11',
+                desc: null,
+                cost: 3100,
+            },
         ],
         paginationProducts: [
             {
