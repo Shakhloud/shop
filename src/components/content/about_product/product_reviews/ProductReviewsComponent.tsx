@@ -17,6 +17,11 @@ const ProductReviewsComponent = (props: any) => {
     const closeModalWindowHandler = () => {
         setModalWindowReview(false);
     }
+    if (modalWindowReview) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "";
+    }
 
     return (
         <div className={classes.container}>

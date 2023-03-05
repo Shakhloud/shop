@@ -1,0 +1,126 @@
+.container {
+    margin: 20px 0 100px 0;
+}
+.navigation {
+    text-align: center;
+    font-size: 16px;
+    color: #A4A4A4;
+}
+.navigation_yellow {
+    color: #FFC700;
+}
+.product__container {
+    margin-top: 30px;
+    display: grid;
+    grid-template-areas: 'img info';
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+}
+.product__image {
+    grid-area: img;
+}
+.product__info {
+    grid-area: info;
+}
+.product__image img {
+    border-radius: 30px;
+    width: 400px;
+    height: 450px;
+}
+.product__title {
+    font-weight: 700;
+    font-size: 64px;
+    color: #FFFFFF;
+    margin-bottom: 40px;
+}
+.product__cost {
+    font-weight: 600;
+    font-size: 48px;
+    color: #FFC700;
+    margin-bottom: 40px;
+}
+.product__characters {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 40px;
+}
+.product__attribute {
+    font-size: 16px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.attribute {
+    margin-left: 20px;
+}
+.attribute_size {
+    width: 70px;
+}
+.attribute_color {
+    width: 100px;
+}
+.countBtn {
+    display: inline-block;
+    margin-left: 20px;
+    background-color: #FFC700;
+    max-width: 70px;
+    padding: 5px 5px;
+    transform: skewX(-10deg);
+    color: black;
+    font-size: 16px;
+    display: grid;
+    grid-gap: 0px 2px;
+    border-radius: 6px;
+    text-align: center;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.countBtn button {
+    border: none;
+    background-color: #FFC700;
+    cursor: pointer;
+}
+.product__btn button{
+    display: inline-block;
+    max-width: 220px;
+    padding: 15px 43px;
+    color: #FFC700;
+    font-weight: 600;
+    font-size: 16px;
+    border: 1px solid #FFC700;
+    background-color: black;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.product__btn button:hover {
+    background-color: #111111;
+    transition: 0.3s;
+}
+
+.product__btn button:active {
+    background-color: #504F51;
+    transition: 0.3s;
+}
+.formDropdown {
+    background-color: #FFC700;
+}
+.desc__title {
+    margin-top: 40px;
+    font-weight: 700;
+    font-size: 36px;
+    color: #F0F0F0;
+}
+.desc__content {
+    margin-top: 35px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: #A5A5A5;
+}
+.link {
+    font-weight: 300;
+    font-size: 16px;
+    color: #A4A4A4;
+    text-decoration: none;
+}

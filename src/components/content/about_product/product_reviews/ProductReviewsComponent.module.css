@@ -44,12 +44,12 @@
 }
 
 .reviews {
-    height: 620px;
+    max-height: 620px;
     overflow: auto;
 }
 
 .modal__bg {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;

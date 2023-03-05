@@ -1,0 +1,13 @@
+.title {
+    margin-top: 100px;
+    font-weight: 700;
+    font-size: 36px;
+    color: #F0F0F0;
+}
+
+.recommendProducts {
+    margin: 45px 0 150px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 0px 33px;
+}

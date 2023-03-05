@@ -11,7 +11,7 @@ import NoPageFound from "./no_page_found/NoPageFound";
 import CallUs from './call_us/CallUs';
 import MainPage from './main/MainPage';
 import TopSell from "./top_sell/TopSell";
-
+import ShopReviews from "./shop_reviews/ShopReviews";
 
 
 const Main = () => {
@@ -20,12 +20,13 @@ const Main = () => {
             <div className={classes.container}>
                 <Routes>
                     <Route path='/about_product/:id' element={<AboutProduct/>}/>
-                    <Route path='/top_sell' element={<TopSell />}/>
+                    <Route path='/top_sell' element={<TopSell/>}/>
                     <Route path='/catalog' element={<ProductPagination getPageData={server.getPageData}/>}/>
                     <Route path='/admin_panel' element={<AdminPanel/>}/>
                     <Route path='/basket' element={<BasketContent/>}/>
                     <Route path='/call_us' element={<CallUs/>}/>
-                    <Route path='/' element={<MainPage />}/>
+                    <Route path='/reviews' element={<ShopReviews/>}/>
+                    <Route path='/' element={<MainPage/>}/>
                     <Route path="*" element={<NoPageFound/>}/>
                 </Routes>
             </div>

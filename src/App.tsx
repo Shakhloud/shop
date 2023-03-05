@@ -22,15 +22,18 @@ const App = observer(() => {
             const basket = server.getBasket(login);
             basketService.setBasket(basket);
         }, [])
+        if (!isAuth) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
 
         return (
             <div className='wrapper'>
                 {!isAuth &&
                     <div className='auth'>
                         <Auth/>
-                    </div>
-                }
-
+                    </div>}
                 <div className={'main' + ' ' + (isAuth ? '' : 'disable')}>
                     <Header/>
                     <Main/>

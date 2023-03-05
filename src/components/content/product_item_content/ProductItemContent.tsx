@@ -7,7 +7,7 @@ const ProductItemContent = (props: any) => {
 
     const addItemHandler = () => {
         if (!props.login) return;
-        props.addItem(props.login, props.productId);
+        props.addItem(props.login, props.productId, null, null, null);
         props.updateBasket();
     }
 
@@ -28,9 +28,6 @@ const ProductItemContent = (props: any) => {
                 <img className={classes.productImg} src={props.image} alt="Фотография товара"/></div>
             <div className={classes.title}>
                 {props.title}
-            </div>
-            <div className={classes.desc}>
-                {props.desc}
             </div>
             <div className={classes.cost}>
                 {props.cost}$

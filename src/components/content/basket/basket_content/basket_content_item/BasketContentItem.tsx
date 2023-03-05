@@ -1,12 +1,10 @@
 import React from 'react';
 import classes from "./BasketContentItem.module.css";
 import {Select, Input, Slider} from 'antd';
-import productItemContent from "../../../product_item_content/ProductItemContent";
 import deleteBtn from './../../../../../img/content/basket/deleteBtn.svg'
 import {basketService, Color, FrontendBasketItem, Size} from "../../../../../store/Basket";
 import {authService} from "../../../../../store/Auth";
 import {server} from "../../../../../store/Server";
-import {disabled} from "react-widgets/PropTypes";
 
 const BasketContentItem = (props: any) => {
 
