@@ -101,6 +101,7 @@
 }
 
 .error {
+    margin-top: 5px;
     display: block;
     color: red;
     font-size: 14px;

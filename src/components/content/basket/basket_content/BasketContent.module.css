@@ -10,6 +10,9 @@
     background-color: white;
 }
 
+.container {
+    margin-bottom: 100px;
+}
 .title {
     font-weight: 600;
     font-size: 36px;

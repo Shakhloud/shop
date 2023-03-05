@@ -9,6 +9,8 @@ import AdminPanel from "./admin_panel/AdminPanel";
 import {AboutProduct} from "./about_product/AboutProduct";
 import NoPageFound from "./no_page_found/NoPageFound";
 import CallUs from './call_us/CallUs';
+import MainPage from './main/MainPage';
+
 
 
 const Main = () => {
@@ -22,7 +24,7 @@ const Main = () => {
                     <Route path='/admin_panel' element={<AdminPanel/>}/>
                     <Route path='/basket' element={<BasketContent/>}/>
                     <Route path='/call_us' element={<CallUs/>}/>
-                    <Route path='/' element={''}/>
+                    <Route path='/' element={<MainPage />}/>
                     <Route path="*" element={<NoPageFound/>}/>
                 </Routes>
             </div>

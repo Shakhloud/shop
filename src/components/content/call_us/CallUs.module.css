@@ -79,6 +79,7 @@
     box-shadow: 0 0 5px #FFC700;
     cursor: pointer;
     transition: 0.3s;
+    text-transform: uppercase;
 }
 
 .submit__btn:hover {
