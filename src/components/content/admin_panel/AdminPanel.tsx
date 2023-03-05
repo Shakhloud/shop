@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from "./AdminPanel.module.css";
-import {server} from "../../store/Server";
+import {server} from "../../../store/Server";
 import {Form, Formik, Field} from "formik";
 import {
     emailValidator,
@@ -8,8 +8,8 @@ import {
     rangeStringLengthValidator,
     telephoneValidator,
     urlValidator
-} from "../../utils/FormikValidators";
-import {basketService} from "../../store/Basket";
+} from "../../../utils/FormikValidators";
+import {basketService} from "../../../store/Basket";
 
 
 const AdminPanel = () => {

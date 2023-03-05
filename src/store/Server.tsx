@@ -35,7 +35,8 @@ type Store = {
     user2Basket: ServerBasket,
     shopReviews: ShopReviews,
     productsReviews: ProductsReviews,
-
+    callAbonents: CallAbonents,
+    distributionAbonents: DistributionAbonents,
 };
 
 type ServerBasket = {
@@ -68,6 +69,25 @@ export type ProductReviews = {
 
 export type ProductsReviews = {
     reviews: Array<ProductReviews>,
+}
+
+type CallAbonent = {
+    name: string,
+    email: string,
+    phone: string,
+    comment: string | null,
+}
+
+type CallAbonents = {
+    abonents: Array<CallAbonent>
+}
+
+type DistributionAbonent = {
+    email: string,
+}
+
+type DistributionAbonents = {
+    distributionAbonents: Array<DistributionAbonent>
 }
 
 class Server {
@@ -343,7 +363,7 @@ class Server {
         this.calcTotalCostOfBasket(basket);
     }
 
-    public deleteProductFromCatalog(productId: number):string {
+    public deleteProductFromCatalog(productId: number): string {
         const deleteIndexPagination = this.store.paginationProducts.map(item => item.id).indexOf(productId);
         if (deleteIndexPagination === -1) {
             return 'Такого id не существует';
@@ -358,7 +378,7 @@ class Server {
         return 'Товар успешно удален.';
     }
 
-    public changeProductFromCatalog(productId: number, title: string | null, image: string | null, desc: string | null, cost: number | null):string {
+    public changeProductFromCatalog(productId: number, title: string | null, image: string | null, desc: string | null, cost: number | null): string {
         if (this.store.allProducts.filter(item => item.id === productId).length !== 0) {
             const changeProductAllProduct = this.store.allProducts.filter(item => item.id === productId)[0];
             if (title) changeProductAllProduct.title = title;
@@ -418,6 +438,23 @@ class Server {
                 this.store.productsReviews.reviews.push(newProductReviews);
             }
         }
+    }
+
+    public addNewAbonentForCall(name: string, email: string, phone: string, comment: string | null) {
+        const newAbonent: CallAbonent = {
+            name: name,
+            email: email,
+            phone: phone,
+            comment: comment
+        }
+        this.store.callAbonents.abonents.push(newAbonent);
+    }
+
+    public addNewDistributionAbonent(email: string) {
+        const distributionAbonent: DistributionAbonent = {
+            email: email,
+        }
+        this.store.distributionAbonents.distributionAbonents.push(distributionAbonent);
     }
 }
 
@@ -877,7 +914,13 @@ const createStore: () => Store = () => {
                     ]
                 },
             ]
-        }
+        },
+        callAbonents: {
+            abonents: []
+        },
+        distributionAbonents: {
+            distributionAbonents: []
+        },
     }
 }
 export const

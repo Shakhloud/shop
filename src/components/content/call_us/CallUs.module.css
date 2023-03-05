@@ -1,0 +1,138 @@
+.container {
+}
+
+.title {
+    font-weight: 700;
+    font-size: 72px;
+    text-align: center;
+    color: #F0F0F0;
+    margin-bottom: 103px;
+}
+
+.title_yellow {
+    color: #FFC700;
+}
+
+.title_under {
+    display: block;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 32px;
+    text-align: center;
+    color: #949494;
+}
+
+.top__content {
+    display: grid;
+    grid-template-areas: 'form map'
+                         'links map';
+    justify-content: space-between;
+}
+
+.content__form {
+    grid-area: form;
+}
+
+.textForm {
+    display: block;
+    padding: 17px 25px 18px 25px;
+    width: 380px;
+    background: #111111;
+    border: none;
+    font-weight: 400;
+    font-size: 12px;
+    color: #FFC700;
+}
+
+.textForm:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+.textForm::placeholder {
+    color: #FFC700;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.error {
+    width: 441px;
+    text-align: center;
+    color: red;
+    font-size: 14px;
+    margin: -15px 0 15px 0;
+    font-weight: 400;
+}
+
+.submit__btn {
+    margin-top: 32px;
+    display: inline-block;
+    max-width: 220px;
+    padding: 15px 43px;
+    color: #FFC700;
+    font-weight: 700;
+    font-size: 16px;
+    border: 1px solid #FFC700;
+    background: #FFC700;
+    transition: 0.3s;
+    color: #1C1C1C;
+    box-shadow: 0 0 5px #FFC700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit__btn:hover {
+    background: #ffd500;
+    box-shadow: 0 0 12px #FFC700;
+    transition: 0.3s;
+}
+
+.submit__btn:active {
+    background: #ffb700;
+    box-shadow: 0 0 5px #FFC700;
+    transition: 0.3s;
+}
+
+.links {
+    grid-area: links;
+    margin-top: 35px;
+}
+
+.links a:not(:last-child) {
+    margin-right: 30px;
+}
+
+.map {
+    grid-area: map;
+}
+
+.bottom__content {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3,283px);
+    margin: 150px 0px;
+    grid-gap: 0px 60px;
+}
+
+.card {
+    flex: 33% 1 1;
+    flex-basis: 283px;
+    background: #1A1A1A;
+    border-radius: 40px 0px;
+    text-align: center;
+    padding: 55px 0 78px 0;
+}
+
+.card__title {
+    margin-top: 47px;
+    font-weight: 600;
+    font-size: 32px;
+    color: #F0F0F0;
+}
+
+.card__info {
+    margin-top: 26px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #FFFFFF;
+}

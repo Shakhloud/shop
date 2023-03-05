@@ -1,0 +1,136 @@
+.wrapper {
+    background-color: #191919;
+    padding: 33px 0 42px 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-areas: 'logo info contact novelties';
+    grid-gap: 75px;
+    align-items: center;
+}
+
+.logoPlusLinks {
+    grid-area: logo;
+}
+
+.logoPlusLinks div {
+    margin-top: 14px;
+}
+
+.logoPlusLinks div a:not(:last-child) {
+    margin-right: 30px;
+}
+
+.information {
+    grid-area: info;
+}
+
+.block__title {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    color: #FFFFFF;
+}
+
+.links {
+    margin-top: 18px;
+}
+
+.kategorie__link:not(:last-child) {
+    margin-bottom: 8px;
+}
+
+.kategorie__link {
+    text-decoration: none;
+    font-size: 16px;
+    color: #B7B7B7;
+}
+.kategorie__link:hover {
+    text-decoration: underline;
+}
+
+.contact {
+    grid-area: contact;
+}
+
+.novelties {
+    grid-area: novelties;
+}
+
+.novelties__title {
+    font-weight: 600;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.novelties__title span {
+    display: block;
+    font-weight: 400;
+    font-size: 14px;
+    color: #B7B7B7;
+
+}
+
+.content__form {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textForm {
+    border-radius: 10px;
+    width: 100%;
+    margin-right: 15px;
+    display: inline-block;
+    padding: 7px 14px 8px 14px;
+    background: #363636;
+    border: none;
+    font-weight: 400;
+    font-size: 12px;
+    color: #FFC700;
+}
+
+.textForm::placeholder {
+    color: #FFC700;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.error {
+    display: block;
+    color: red;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.submit__btn {
+    text-align: center;
+    max-width: 100px;
+    padding: 7px 16px;
+    color: #FFC700;
+    font-weight: 700;
+    font-size: 12px;
+    border: 1px solid #FFC700;
+    background: #FFC700;
+    transition: 0.3s;
+    color: #1C1C1C;
+    box-shadow: 0 0 5px #FFC700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit__btn:hover {
+    background: #ffd500;
+    box-shadow: 0 0 12px #FFC700;
+    transition: 0.3s;
+}
+
+.submit__btn:active {
+    background: #ffb700;
+    box-shadow: 0 0 5px #FFC700;
+    transition: 0.3s;
+}
