@@ -15,7 +15,7 @@ const Top = observer((props: any) => {
         const basket = basketService.getBasket();
 
         const unAuthHandler = () => {
-            navigate('/');
+            navigate('/auth');
             authService.setAuth(false);
             authService.setRole(null);
             authService.setLogin(null);

@@ -64,7 +64,6 @@ const ProductReviewsComponent = (props: any) => {
                                             id="rating"
                                             name="rating"
                                             placeholder="1/2/3/4/5"
-                                            type="number"
                                         />
                                         {touched.rating && errors.rating &&
                                             <div className={classes.error}>

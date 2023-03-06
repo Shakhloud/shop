@@ -15,12 +15,7 @@ const App = observer(() => {
         const isAuth: boolean = authService.getAuth();
         const navigate = useNavigate();
         useEffect(() => {
-            navigate('/');
-            //Удалить после разработки
-            const login = authService.getLogin();
-            if (!login) return;
-            const basket = server.getBasket(login);
-            basketService.setBasket(basket);
+            navigate('/auth');
         }, [])
         if (!isAuth) {
             document.body.style.overflow = "hidden";

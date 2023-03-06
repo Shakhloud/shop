@@ -474,6 +474,9 @@ class Server {
             return 2;
         }
     }
+    public getShopReviews(): ShopReviews {
+       return this.store.shopReviews;
+    }
 }
 
 const createStore: () => Store = () => {

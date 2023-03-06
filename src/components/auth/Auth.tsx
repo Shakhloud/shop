@@ -4,14 +4,17 @@ import {authService} from './../../store/Auth'
 import {server, AuthResponse} from './../../store/Server'
 import {observer} from "mobx-react";
 import {basketService} from "../../store/Basket";
-
+import {NavLink, useNavigate} from "react-router-dom";
 
 const Auth = observer((props: any) => {
+        const navigate = useNavigate();
         const loginRef = useRef(null);
         const passwordRef = useRef(null);
         const [isError, setIsError] = useState(false);
         const isAuth: boolean = authService.getAuth();
+
         const isAuthBtnHandler = () => {
+            navigate('/');
             const loginInput: any = loginRef.current;
             const passwordInput: any = passwordRef.current;
             const authResponse: AuthResponse = server.makeAuth(loginInput.value, passwordInput.value);

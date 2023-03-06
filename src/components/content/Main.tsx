@@ -12,7 +12,7 @@ import CallUs from './call_us/CallUs';
 import MainPage from './main/MainPage';
 import TopSell from "./top_sell/TopSell";
 import ShopReviews from "./shop_reviews/ShopReviews";
-
+import bg from './../../img/content/shop_reviews/bg.png'
 
 const Main = () => {
     return (
@@ -26,8 +26,10 @@ const Main = () => {
                     <Route path='/basket' element={<BasketContent/>}/>
                     <Route path='/call_us' element={<CallUs/>}/>
                     <Route path='/reviews' element={<ShopReviews/>}/>
+                    <Route path='/auth' element={''}/>
                     <Route path='/' element={<MainPage/>}/>
                     <Route path="*" element={<NoPageFound/>}/>
+
                 </Routes>
             </div>
         </div>

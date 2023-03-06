@@ -12,7 +12,6 @@ const ProductSlider = (props: any) => {
     const products = props.products;
     let plusForIndex = 1;
     const nextItemHandler = () => {
-        debugger
         if ((currentIndex + plusForIndex) === products.length) {
             setIndex(0);
         } else {
@@ -22,9 +21,7 @@ const ProductSlider = (props: any) => {
     const prevItemHandler = () => {
         if (currentIndex === 0) {
             setIndex(products.length - (products.length % 4));
-            debugger
         } else {
-
             setIndex(currentIndex - 4);
         }
     }

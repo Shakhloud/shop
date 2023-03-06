@@ -36,7 +36,11 @@ export const telephoneValidator = (value: string) => {
     }
 };
 export const ratingValidator = (value: string) => {
-    if (Number(value) < 1 || Number(value) > 5) {
+    if (!isNaN(Number(value))) {
+        if (Number(value) < 1 || Number(value) > 5) {
+            return 'Введите корректную оценку от 1 до 5';
+        }
+    } else {
         return 'Введите корректную оценку от 1 до 5';
     }
 };

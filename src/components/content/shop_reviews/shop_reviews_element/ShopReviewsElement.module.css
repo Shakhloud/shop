@@ -1,0 +1,43 @@
+.itemContainer {
+    padding: 20px;
+    display: grid;
+    grid-template-areas: 'ava name rating'
+                         'content content content';
+    color: white;
+    background-image: url("./../../../../img/content/shop_reviews/bg.jpg");
+    background-position: bottom;
+    border-radius: 15px;
+    align-items: center;
+    grid-template-columns: 1fr 2fr auto;
+}
+.avatar {
+    grid-area: ava;
+}
+.avatar img {
+    width: 70px;
+    border-radius: 50px;
+}
+.name {
+    grid-area: name;
+    color: black;
+    font-weight: 700;
+    font-size: 20px;
+    justify-self: start;
+    margin-left: 5px;
+}
+.rating {
+    grid-area: rating;
+}
+.rating img {
+    display: inline-block;
+}
+.rating img:not(:last-child) {
+    margin-right: 7px;
+}
+.content {
+    grid-area: content;
+    margin: 0px 5px 0 35px;
+    font-size: 14px;
+    text-align: left;
+    color: black;
+}

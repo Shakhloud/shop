@@ -1,0 +1,64 @@
+.container {
+    margin-bottom: 100px;
+}
+.title {
+    font-weight: 700;
+    font-size: 72px;
+    text-align: center;
+    color: #F0F0F0;
+    margin-bottom: 100px;
+}
+.title_yellow {
+    color: #FFC700;
+}
+.title_under {
+    display: block;
+    font-weight: 300;
+    font-size: 32px;
+    color: #949494;
+}
+.shop__reviews {
+    text-align: center;
+    z-index: 1;
+    background-image: url('./../../../img/content/shop_reviews/bg.png'), url("");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.content {
+    max-width: 700px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    background-image: url("./../../../img/content/shop_reviews/bg_reviews.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.content__reviews {
+    padding: 35px 20px 20px 20px;
+}
+.content__reviews div:not(:last-child) {
+    margin-bottom: 20px;
+}
+.btn {
+    justify-self: center;
+    background-color: #070707;
+    border-radius: 50%;
+    padding: 15px 20px;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+.btn img {
+    max-width: 17px;
+}
+.btn:hover {
+    background-color: #504F51 ;
+    transition: 0.3s;
+}
+.btn:active {
+    background-color: #070707 ;
+    transition: 0.3s;
+}
