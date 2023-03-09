@@ -14,7 +14,6 @@ const Auth = observer((props: any) => {
         const isAuth: boolean = authService.getAuth();
 
         const isAuthBtnHandler = () => {
-            navigate('/');
             const loginInput: any = loginRef.current;
             const passwordInput: any = passwordRef.current;
             const authResponse: AuthResponse = server.makeAuth(loginInput.value, passwordInput.value);
@@ -24,6 +23,7 @@ const Auth = observer((props: any) => {
             setIsError(!authResponse.isAuth);
             const login = authService.getLogin();
             if (!login) return;
+            navigate('/');
             const basket = server.getBasket(login);
             basketService.setBasket(basket);
         }
